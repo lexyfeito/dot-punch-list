@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://pub.dartlang.org/packages/pdf/versions/1.1.0 -->
+<html lang="en-us" class="mdl-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" async="" src="./pdf 1.1.0 _ Dart Package_files/analytics.js"></script><script async="async" src="./pdf 1.1.0 _ Dart Package_files/js"></script>
+  <script src="./pdf 1.1.0 _ Dart Package_files/gtag.js"></script>
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta property="og:site_name" content="Dart Packages">
+  <title>pdf 1.1.0 | Dart Package</title>
+  <meta property="og:title" content="pdf 1.1.0 | Dart Package">
+  <link href="./pdf 1.1.0 _ Dart Package_files/css" rel="stylesheet">
+  <meta itemprop="image" content="/static/img/dart-logo-400x400.png?hash=i18bc8g4aa2r6vf85lpgro6ml5ltd13g">
+  <meta property="og:image" content="/static/img/dart-logo-400x400.png?hash=i18bc8g4aa2r6vf85lpgro6ml5ltd13g">
+  <link rel="shortcut icon" href="https://pub.dartlang.org/favicon.ico">
+  <link rel="canonical" href="https://pub.dartlang.org/packages/pdf">
+  <meta property="og:url" content="https://pub.dartlang.org/packages/pdf">
+  <meta name="description" content="A pdf producer for Dart. It can create pdf files for both web or flutter.">
+  <meta property="og:description" content="A pdf producer for Dart. It can create pdf files for both web or flutter.">
+  <link rel="alternate" type="application/atom+xml" title="Updated Packages Feed for Pub" href="https://pub.dartlang.org/feed.atom">
+  <link href="./pdf 1.1.0 _ Dart Package_files/github.css" rel="stylesheet">
+  <link href="./pdf 1.1.0 _ Dart Package_files/github-markdown.css" rel="stylesheet" type="text/css">
+  <link href="./pdf 1.1.0 _ Dart Package_files/style.css" rel="stylesheet" type="text/css">
+  <script src="./pdf 1.1.0 _ Dart Package_files/script.dart.js" defer="defer"></script>
+  <script async="async" defer="defer" src="./pdf 1.1.0 _ Dart Package_files/f.txt"></script>
+<script type="text/javascript" charset="utf-8" async="" src="./pdf 1.1.0 _ Dart Package_files/hats-integration-release.js"></script><link rel="preload" href="./pdf 1.1.0 _ Dart Package_files/f(1).txt" as="script"><script type="text/javascript" src="./pdf 1.1.0 _ Dart Package_files/f(1).txt"></script></head>
+<body class="">
+<header class="site-header">
+  <h1 class="_visuallyhidden">Dart pub</h1>
+  <button class="hamburger"></button>
+  <div class="mask"></div>
+  <div class="nav-wrap">
+    <div class="nav-header"><a class="logo" href="https://pub.dartlang.org/"><img src="./pdf 1.1.0 _ Dart Package_files/dart-logo.svg" alt="dart pub logo"></a>
+      <div class="_flex-space"></div>
+      <button class="close"></button>
+    </div>
+    <nav class="site-nav">
+      <span>Getting Started:</span>
+      <div class="sub-wrap hoverable">
+        <button class="button">Flutter</button>
+        <div class="sub-nav">
+          <a class="link" target="_blank" rel="noopener" href="https://flutter.io/using-packages/">Using Packages</a>
+          <a class="link" target="_blank" rel="noopener" href="https://flutter.io/developing-packages/">Developing Packages and Plugins</a>
+        </div>
+      </div>
+      <div class="sub-wrap hoverable">
+        <button class="button">Web &amp; Server</button>
+        <div class="sub-nav">
+          <a class="link" target="_blank" rel="noopener" href="https://www.dartlang.org/tools/pub/get-started">Using Packages</a>
+          <a class="link" target="_blank" rel="noopener" href="https://www.dartlang.org/tools/pub/publishing">Publishing a Package</a>
+          <a class="link" target="_blank" rel="noopener" href="https://www.dartlang.org/tools/pub">Overview</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+  <div class="_banner-bg">
+    <main class="package-banner">
+      <form class="search-bar" action="https://pub.dartlang.org/packages">
+        <input class="input" name="q" placeholder="Search Dart packages" autocomplete="on" autofocus="autofocus">
+        <button class="icon"></button>
+      </form>
+    </main>
+  </div>
+
+
+
+<main>
+  
+<div class="package-header">
+  <h2 class="title">pdf 1.1.0</h2>
+  <div class="metadata">
+    Published <span>Jan 21, 2019</span>
+    <!-- &bull; Downloads: X -->
+      • Updated:
+      <span><a href="https://pub.dartlang.org/packages/pdf">1.3.7</a></span>
+    <div class="tags">    <a class="package-tag" href="https://pub.dartlang.org/flutter/packages" title="Compatible with the Flutter platform.">Flutter</a>
+    <a class="package-tag" href="https://pub.dartlang.org/web/packages" title="Compatible with the web platform.">web</a>
+    <span class="package-tag" title="Compatible with other platforms (terminal, server, etc.).">other</span>
+</div>
+  </div>
+</div>
+
+<div class="package-container">
+  <div class="main tabs-content">
+    <ul class="package-tabs js-tabs">
+      <li class="tab -active" data-name="-readme-tab-" role="button">README.md</li>
+      <li class="tab" data-name="-changelog-tab-" role="button">CHANGELOG.md</li>
+      <li class="tab" data-name="-example-tab-" role="button">Example</li>
+      <li class="tab" data-name="-installing-tab-" role="button">Installing</li>
+      <li class="tab" data-name="-versions-tab-" role="button">Versions</li>
+      <li class="tab" data-name="-analysis-tab-" role="button">
+        <div class="score-box"><span class="number -solid" title="Analysis and more details.">94</span></div>
+      </li>
+    </ul>
+      <section class="content -active js-content markdown-body" data-name="-readme-tab-">
+        <h1 class="hash-header" id="pdf-creation-library-for-dart--flutter">Pdf creation library for dart / flutter <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#pdf-creation-library-for-dart--flutter">#</a></h1>
+<p>This is a low-level Pdf creation library.
+It can create a full multi-pages document with graphics,
+images and text using TrueType fonts.</p>
+<blockquote>
+<p>Use <code>printing</code> package <a href="https://pub.dartlang.org/packages/printing">https://pub.dartlang.org/packages/printing</a>
+for full flutter print and share operation.</p></blockquote>
+<p>The coordinate system is using the internal Pdf system:</p><ul><li>(0.0, 0.0) is bottom-left</li><li>1.0 is defined as 1 / 72.0 inch</li><li>you can use the constants for centimeters, milimeters and inch defined in PdfPageFormat</li></ul>
+<p>Example:</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">final</span> pdf = PdfDocument();
+<span class="hljs-keyword">final</span> page = PdfPage(pdf, pageFormat: PdfPageFormat.letter);
+<span class="hljs-keyword">final</span> g = page.getGraphics();
+<span class="hljs-keyword">final</span> font = PdfFont(pdf);
+
+g.setColor(PdfColor(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>));
+g.drawRect(<span class="hljs-number">50.0</span>, <span class="hljs-number">30.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">50.0</span>);
+g.fillPath();
+
+g.setColor(PdfColor(<span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>));
+g.drawString(font, <span class="hljs-number">12.0</span>, <span class="hljs-string">"Hello World!"</span>, <span class="hljs-number">5.0</span> * PdfPageFormat.mm, <span class="hljs-number">300.0</span>);
+
+<span class="hljs-keyword">var</span> file = File(<span class="hljs-string">'file.pdf'</span>);
+file.writeAsBytesSync(pdf.save());
+</code></pre>
+<p>To load an image it is possible to use the dart library <a href="https://pub.dartlang.org/packages/image">image</a>:</p>
+<pre><code class="language-dart hljs">Image image = decodeImage(Io.File(<span class="hljs-string">'test.webp'</span>).readAsBytesSync());
+PdfImage image = PdfImage(
+  pdf,
+	image: img.data.buffer.asUint8List(),
+	width: img.width,
+	height: img.height);
+g.drawImage(image, <span class="hljs-number">100.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">80.0</span>);
+</code></pre>
+<p>To use a TrueType font:</p>
+<pre><code class="language-dart hljs">PdfTtfFont ttf = PdfTtfFont(
+  pdf,
+  (File(<span class="hljs-string">"open-sans.ttf"</span>).readAsBytesSync() <span class="hljs-keyword">as</span> Uint8List).buffer.asByteData());
+g.setColor(PdfColor(<span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>));
+g.drawString(ttf, <span class="hljs-number">20.0</span>, <span class="hljs-string">"Dart is awesome"</span>, <span class="hljs-number">50.0</span>, <span class="hljs-number">30.0</span>);
+</code></pre>
+<p>To save the image on Flutter, use the <a href="https://pub.dartlang.org/packages/path_provider">path_provider</a> library:</p>
+<pre><code class="language-dart hljs">Directory tempDir = <span class="hljs-keyword">await</span> getTemporaryDirectory();
+<span class="hljs-built_in">String</span> tempPath = tempDir.path;
+<span class="hljs-keyword">var</span> file = File(<span class="hljs-string">"<span class="hljs-subst">$tempPath</span>/file.pdf"</span>);
+<span class="hljs-keyword">await</span> file.writeAsBytes(pdf.save());
+</code></pre>
+
+      </section>
+      <section class="content js-content markdown-body" data-name="-changelog-tab-">
+        <h1 class="hash-header" id="110">1.1.0 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#110">#</a></h1><ul><li>Rename classes to satisfy Dart conventions</li><li>Remove useless new and const keywords</li><li>Mark some internal functions as protected</li><li>Fix annotations</li><li>Implement default fonts bounding box</li><li>Add Bézier Curve primitive</li><li>Implement drawShape</li><li>Add support for Jpeg images</li><li>Fix numeric conversions in graphic operations</li><li>Add unicode support for annotations and info block</li><li>Add Flutter example</li></ul>
+<h1 class="hash-header" id="108">1.0.8 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#108">#</a></h1><ul><li>Fix monospace TTF font loading</li><li>Add PDFPageFormat::toString</li></ul>
+<h1 class="hash-header" id="107">1.0.7 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#107">#</a></h1><ul><li>Use lowercase page dimension constants</li></ul>
+<h1 class="hash-header" id="106">1.0.6 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#106">#</a></h1><ul><li>Fix TTF font name lookup</li></ul>
+<h1 class="hash-header" id="105">1.0.5 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#105">#</a></h1><ul><li>Remove dependency to dart:io</li><li>Add Contributing</li></ul>
+<h1 class="hash-header" id="104">1.0.4 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#104">#</a></h1><ul><li>Updated homepage</li><li>Update source formatting</li><li>Update README</li></ul>
+<h1 class="hash-header" id="103">1.0.3 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#103">#</a></h1><ul><li>Remove dependency to ttf_parser</li></ul>
+<h1 class="hash-header" id="102">1.0.2 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#102">#</a></h1><ul><li>Update sdk support for 2.0.0</li></ul>
+<h1 class="hash-header" id="101">1.0.1 <a class="hash-link" href="https://pub.dartlang.org/packages/pdf/versions/1.1.0#101">#</a></h1><ul><li>Add example</li><li>Lower vector_math dependency version</li><li>Uses better page format object</li></ul>
+
+      </section>
+      <section class="content js-content markdown-body" data-name="-example-tab-">
+        <p style="font-family: monospace"><b>example/main.dart</b></p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'dart:io'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:pdf/pdf.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  <span class="hljs-keyword">final</span> pdf = PdfDocument(deflate: zlib.encode);
+  <span class="hljs-keyword">final</span> page = PdfPage(pdf, pageFormat: PdfPageFormat.letter);
+  <span class="hljs-keyword">final</span> g = page.getGraphics();
+  <span class="hljs-keyword">final</span> font = g.defaultFont;
+  <span class="hljs-keyword">final</span> top = page.pageFormat.height;
+
+  g.setColor(PdfColor(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>));
+  g.drawRect(<span class="hljs-number">50.0</span> * PdfPageFormat.mm, top - <span class="hljs-number">80.0</span> * PdfPageFormat.mm,
+      <span class="hljs-number">100.0</span> * PdfPageFormat.mm, <span class="hljs-number">50.0</span> * PdfPageFormat.mm);
+  g.fillPath();
+
+  g.setColor(PdfColor(<span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>));
+  g.drawString(font, <span class="hljs-number">12.0</span>, <span class="hljs-string">"Hello World!"</span>, <span class="hljs-number">10.0</span> * PdfPageFormat.mm,
+      top - <span class="hljs-number">10.0</span> * PdfPageFormat.mm);
+
+  <span class="hljs-keyword">var</span> file = File(<span class="hljs-string">'example.pdf'</span>);
+  file.writeAsBytesSync(pdf.save());
+}
+</code></pre>
+
+      </section>
+    <section class="content js-content" data-name="-installing-tab-">
+<h2>Use this package as a library</h2>
+<h3>1. Depend on it</h3>
+<p>Add this to your package's pubspec.yaml file:</p>
+<pre><code class="language-yaml hljs">
+<span class="hljs-attr">dependencies:</span>
+<span class="hljs-attr">  </span><strong><span class="hljs-attr">pdf:</span> <span class="hljs-string">^1.1.0</span></strong>
+
+</code></pre>
+<h3>2. Install it</h3>
+<p>You can install packages from the command line:</p>
+  <p>with pub:</p>
+  <pre><code class="language-shell hljs"><span class="hljs-meta">
+$</span><span class="bash"> </span><strong><span class="bash">pub get</span></strong>
+
+</code></pre>
+  <p>with Flutter:</p>
+  <pre><code class="language-shell hljs"><span class="hljs-meta">
+$</span><span class="bash"> </span><strong><span class="bash">flutter packages get</span></strong>
+
+</code></pre>
+<p>Alternatively, your editor might support <code>pub get</code> or <code>flutter packages get</code>.
+  Check the docs for your editor to learn more.</p>
+  <h3>3. Import it</h3>
+  <p>Now in your Dart code, you can use:
+  </p>
+  <pre><code class="language-dart hljs">
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:pdf/pdf.dart'</span>;
+  </code></pre>
+
+    </section>
+    <section class="content js-content" data-name="-versions-tab-">
+      
+<table class="version-table" data-package="pdf">
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Uploaded</th>
+      <th class="documentation" width="60">Documentation</th>
+      <th class="archive" width="60">Archive</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr data-version="1.3.7">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.7">1.3.7</a></strong></td>
+  <td>Mar 28, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.7/" rel="nofollow" title="Go to the documentation of pdf 1.3.7">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.7">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.7.tar.gz" title="Download pdf 1.3.7 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.7 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.3.6">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.6">1.3.6</a></strong></td>
+  <td>Mar 26, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.6/" rel="nofollow" title="Go to the documentation of pdf 1.3.6">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.6">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.6.tar.gz" title="Download pdf 1.3.6 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.6 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.3.5">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.5">1.3.5</a></strong></td>
+  <td>Mar 26, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.5/" rel="nofollow" title="Go to the documentation of pdf 1.3.5">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.5">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.5.tar.gz" title="Download pdf 1.3.5 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.5 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.3.4">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.4">1.3.4</a></strong></td>
+  <td>Mar 3, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.4/" rel="nofollow" title="Go to the documentation of pdf 1.3.4">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.4">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.4.tar.gz" title="Download pdf 1.3.4 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.4 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.3.3">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.3">1.3.3</a></strong></td>
+  <td>Feb 27, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.3/" rel="nofollow" title="Go to the documentation of pdf 1.3.3">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.3">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.3.tar.gz" title="Download pdf 1.3.3 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.3 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.3.2">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.2">1.3.2</a></strong></td>
+  <td>Feb 24, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.2/" rel="nofollow" title="Go to the documentation of pdf 1.3.2">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.2">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.2.tar.gz" title="Download pdf 1.3.2 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.2 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.3.1">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.1">1.3.1</a></strong></td>
+  <td>Feb 6, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.1/" rel="nofollow" title="Go to the documentation of pdf 1.3.1">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.1">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.1.tar.gz" title="Download pdf 1.3.1 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.1 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.3.0">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.3.0">1.3.0</a></strong></td>
+  <td>Feb 6, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.3.0/" rel="nofollow" title="Go to the documentation of pdf 1.3.0">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.3.0">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.3.0.tar.gz" title="Download pdf 1.3.0 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.3.0 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.2.0">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.2.0">1.2.0</a></strong></td>
+  <td>Feb 3, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.2.0/" rel="nofollow" title="Go to the documentation of pdf 1.2.0">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.2.0">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.2.0.tar.gz" title="Download pdf 1.2.0 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.2.0 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.1.1">
+  <td><strong><a href="https://pub.dartlang.org/packages/pdf/versions/1.1.1">1.1.1</a></strong></td>
+  <td>Jan 27, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/pdf/1.1.1/" rel="nofollow" title="Go to the documentation of pdf 1.1.1">
+        <img src="./pdf 1.1.0 _ Dart Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of pdf 1.1.1">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/pdf-1.1.1.tar.gz" title="Download pdf 1.1.1 archive">
+      <img src="./pdf 1.1.0 _ Dart Package_files/ic_get_app_black_24dp.svg" alt="Download pdf 1.1.1 archive">
+    </a>
+  </td>
+</tr>
+
+  </tbody>
+</table>
+
+  <p>
+    <a href="https://pub.dartlang.org/packages/pdf/versions">All 20 versions...</a>
+  </p>
+
+    </section>
+    <section class="content js-content" data-name="-analysis-tab-">
+      <table id="scores-table">
+  <tbody><tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted">Popularity:</span>
+        <div class="tooltip-content">
+          Describes how popular the package is relative to other packages.
+          <a href="https://pub.dartlang.org/help#popularity">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td class="score-value">
+      
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 92%;">92</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 92%; background: rgb(185, 187, 188);"></div>
+    </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted">Health:</span>
+        <div class="tooltip-content">
+          Code health derived from static analysis.
+          <a href="https://pub.dartlang.org/help#health">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td class="score-value">
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 93%;">93</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 93%; background: rgb(186, 187, 189);"></div>
+    </div>
+</div>
+</td>
+  </tr>
+  <tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted">Maintenance:</span>
+        <div class="tooltip-content">
+          Reflects how tidy and up-to-date the package is.
+          <a href="https://pub.dartlang.org/help#maintenance">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td class="score-value">
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 100%;">100</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 100%; background: rgb(192, 192, 192);"></div>
+    </div>
+</div>
+</td>
+  </tr>
+  <tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted"><b>Overall:</b></span>
+        <div class="tooltip-content">
+          Weighted score of the above.
+          <a href="https://pub.dartlang.org/help#overall-score">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td>
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 94%;">94</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 94%; background: rgb(1, 117, 194);"></div>
+    </div>
+</div>
+</td>
+  </tr>
+</tbody></table>
+
+<div style="text-align: right; font-size: 10pt;">Learn more about <a href="https://pub.dartlang.org/help#scoring">scoring</a>.</div>
+
+<hr>
+
+<p>
+  We analyzed this package on Apr 4, 2019, and provided a score, details, and suggestions below.
+  Analysis was completed with status <i>completed</i> using:
+</p>
+
+<ul>
+  <li>Dart: 2.2.0</li>
+  <li>pana: 0.12.14</li>
+
+</ul>
+
+<h4>Platforms</h4>
+
+<p>Detected platforms: Flutter, web, other</p>
+<blockquote><p>No platform restriction found in primary library <code>package:pdf/pdf.dart</code>.</p>
+</blockquote>
+
+
+<h4>Health suggestions</h4>
+<div class="suggestion-row">
+  <div class="suggestion-title">
+    <span class="suggestion-icon-info"></span>
+    <p>Fix <code>lib/src/page.dart</code>. (-1.99 points)</p>
+
+  </div>
+  <div class="suggestion-description">
+    <p>Analysis of <code>lib/src/page.dart</code> reported 4 hints:</p>
+<p>line 96 col 9: Use isNotEmpty instead of length</p>
+<p>line 109 col 9: Use isNotEmpty instead of length</p>
+<p>line 114 col 9: Use isNotEmpty instead of length</p>
+<p>line 126 col 9: Use isNotEmpty instead of length</p>
+
+    
+  </div>
+</div>
+<div class="suggestion-row">
+  <div class="suggestion-title">
+    <span class="suggestion-icon-info"></span>
+    <p>Fix <code>lib/src/formxobject.dart</code>. (-1.49 points)</p>
+
+  </div>
+  <div class="suggestion-description">
+    <p>Analysis of <code>lib/src/formxobject.dart</code> reported 3 hints:</p>
+<p>line 49 col 9: Use isNotEmpty instead of length</p>
+<p>line 54 col 9: Use isNotEmpty instead of length</p>
+<p>line 58 col 9: Use isNotEmpty instead of length</p>
+
+    
+  </div>
+</div>
+<div class="suggestion-row">
+  <div class="suggestion-title">
+    <span class="suggestion-icon-info"></span>
+    <p>Fix <code>lib/src/graphics.dart</code>. (-1.49 points)</p>
+
+  </div>
+  <div class="suggestion-description">
+    <p>Analysis of <code>lib/src/graphics.dart</code> reported 3 hints:</p>
+<p>line 34 col 9: Use isEmpty instead of length</p>
+<p>line 294 col 19: Use contains instead of indexOf</p>
+<p>line 329 col 19: Use contains instead of indexOf</p>
+
+    
+  </div>
+</div>
+<div class="suggestion-row">
+  <div class="suggestion-title">
+    <span class="suggestion-icon-info"></span>
+    <p>Fix additional 5 files with analysis or formatting issues. (-2.50 points)</p>
+
+  </div>
+  <div class="suggestion-description">
+    <p>Additional issues in the following files:</p><ul><li><code>lib/src/catalog.dart</code> (1 hint)</li><li><code>lib/src/font.dart</code> (1 hint)</li><li><code>lib/src/object.dart</code> (1 hint)</li><li><code>lib/src/outline.dart</code> (1 hint)</li><li><code>lib/src/type1_font.dart</code> (1 hint)</li></ul>
+
+    
+  </div>
+</div>
+
+
+
+<h4>Dependencies</h4>
+<div class="overflow-x">
+<table class="dependency-table">
+  <tbody><tr>
+    <th>Package</th>
+    <th>Constraint</th>
+    <th>Resolved</th>
+    <th>Available</th>
+  </tr>
+  <tr>
+    <th colspan="4" class="sub-header">Direct dependencies</th>
+  </tr>
+  <tr>
+    <td>Dart SDK</td>
+    <td>&gt;=1.8.0 &lt;3.0.0</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/meta">meta</a></td>
+    <td>^1.1.5</td>
+    <td>1.1.7</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/utf">utf</a></td>
+    <td>^0.9.0</td>
+    <td>0.9.0+5</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/vector_math">vector_math</a></td>
+    <td>^2.0.0</td>
+    <td>2.0.8</td>
+    <td></td>
+  </tr>
+
+
+  <tr>
+    <th colspan="4" class="sub-header">Dev dependencies</th>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/test">test</a></td>
+    <td>any</td>
+    <td></td>
+    <td></td>
+  </tr>
+
+</tbody></table>
+</div>
+
+    </section>
+  </div>
+
+  <aside class="sidebar sidebar-content">
+  <h3 class="title">About</h3>
+    <p>A pdf producer for Dart. It can create pdf files for both web or flutter.</p>
+  <p>
+    <a class="link" href="https://github.com/DavBfr/dart_pdf/tree/master/pdf">Homepage</a><br>
+    <a class="link" href="https://github.com/DavBfr/dart_pdf">Repository (GitHub)</a><br>
+    <a class="link" href="https://github.com/DavBfr/dart_pdf/issues">View/report issues</a><br>
+    <a class="link" href="https://pub.dartlang.org/documentation/pdf/1.1.0/">API reference</a><br>
+  </p>
+
+  <h3 class="title">Author</h3>
+  <div><span class="author"><a href="mailto:dev.nfet.net@gmail.com" title="Email dev.nfet.net@gmail.com"><i class="email-icon"></i></a> <a href="https://pub.dartlang.org/packages?q=email%3Adev.nfet.net%40gmail.com" title="Search packages with dev.nfet.net@gmail.com" rel="nofollow"><i class="search-icon"></i></a> David PHAM-VAN</span></div>
+
+  <h3 class="title">Uploader</h3>
+  <p><span class="author"><a href="mailto:davbfr@gmail.com" title="Email davbfr@gmail.com"><i class="email-icon"></i></a> <a href="https://pub.dartlang.org/packages?q=email%3Adavbfr%40gmail.com" title="Search packages with davbfr@gmail.com" rel="nofollow"><i class="search-icon"></i></a> davbfr@gmail.com</span></p>
+
+    <h3 class="title">License</h3>
+    <p>LGPL 2.1 (<a href="https://github.com/DavBfr/dart_pdf/blob/master/pdf/LICENSE">LICENSE</a>)</p>
+
+    <h3 class="title">Dependencies</h3>
+    <p><a href="https://pub.dartlang.org/packages/meta">meta</a>, <a href="https://pub.dartlang.org/packages/utf">utf</a>, <a href="https://pub.dartlang.org/packages/vector_math">vector_math</a></p>
+
+  <h3 class="title">More</h3>
+  <p><a href="https://pub.dartlang.org/packages?q=dependency%3Apdf" rel="nofollow">Packages that depend on pdf</a></p>
+</aside>
+
+</div>
+
+<script type="application/ld+json">
+{"@context":"http://schema.org","@type":"SoftwareSourceCode","name":"pdf","version":"1.1.0","description":"pdf - A pdf producer for Dart. It can create pdf files for both web or flutter.","url":"https://pub.dartlang.org/packages/pdf","dateCreated":"2018-07-16T21:12:28.922370Z","dateModified":"2019-01-21T21:51:59.560306Z","programmingLanguage":"Dart","image":"https://pub.dartlang.org/static/img/dart-logo-400x400.png","license":"https://github.com/DavBfr/dart_pdf/blob/master/pdf/LICENSE"}
+</script>
+
+</main>
+
+<footer class="site-footer">
+  <a class="link" href="https://www.dartlang.org/">Dart language</a>
+  <a class="link" href="https://www.google.com/intl/en/policies/terms/">Terms</a>
+  <a class="link" href="https://www.google.com/intl/en/policies/privacy/">Privacy</a>
+  <a class="link" href="https://pub.dartlang.org/help">Help</a>
+  <a class="link" href="https://pub.dartlang.org/feed.atom"><img src="./pdf 1.1.0 _ Dart Package_files/atom-feed-icon-32x32.png" class="inline-icon"></a>
+  <a class="link github_issue" href="https://github.com/dart-lang/pub-dartlang-dart/issues/new?body=URL%3A+https%3A%2F%2Fpub.dartlang.org%2Fpackages%2Fpdf%2Fversions%2F1.1.0%0A%0A%3CDescribe+your+issue+or+suggestion+here%3E&amp;title=%3CSummarize+your+issues+here%3E&amp;labels=Area%3A+site+feedback">Report an issue with this site</a>
+</footer>
+<script src="./pdf 1.1.0 _ Dart Package_files/highlight.pack.js"></script>
+<script src="./pdf 1.1.0 _ Dart Package_files/init.js"></script>
+
+
+</body></html>

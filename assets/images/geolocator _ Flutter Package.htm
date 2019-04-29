@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://pub.dartlang.org/packages/geolocator -->
+<html lang="en-us" class="mdl-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" async="" src="./geolocator _ Flutter Package_files/analytics.js"></script><script async="async" src="./geolocator _ Flutter Package_files/js"></script>
+  <script src="./geolocator _ Flutter Package_files/gtag.js"></script>
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta property="og:site_name" content="Dart Packages">
+  <title>geolocator | Flutter Package</title>
+  <meta property="og:title" content="geolocator | Flutter Package">
+  <link href="./geolocator _ Flutter Package_files/css" rel="stylesheet">
+  <meta itemprop="image" content="/static/img/dart-logo-400x400.png?hash=i18bc8g4aa2r6vf85lpgro6ml5ltd13g">
+  <meta property="og:image" content="/static/img/dart-logo-400x400.png?hash=i18bc8g4aa2r6vf85lpgro6ml5ltd13g">
+  <link rel="shortcut icon" href="https://pub.dartlang.org/static/img/flutter-logo-32x32.png">
+  <meta name="description" content="Geolocation plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API for generic location (GPS etc.) functions.">
+  <meta property="og:description" content="Geolocation plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API for generic location (GPS etc.) functions.">
+  <link rel="alternate" type="application/atom+xml" title="Updated Packages Feed for Pub" href="https://pub.dartlang.org/feed.atom">
+  <link href="./geolocator _ Flutter Package_files/github.css" rel="stylesheet">
+  <link href="./geolocator _ Flutter Package_files/github-markdown.css" rel="stylesheet" type="text/css">
+  <link href="./geolocator _ Flutter Package_files/style.css" rel="stylesheet" type="text/css">
+  <script src="./geolocator _ Flutter Package_files/script.dart.js" defer="defer"></script>
+  <script async="async" defer="defer" src="./geolocator _ Flutter Package_files/f.txt"></script>
+<script type="text/javascript" charset="utf-8" async="" src="./geolocator _ Flutter Package_files/hats-integration-release.js"></script><link rel="preload" href="./geolocator _ Flutter Package_files/f(1).txt" as="script"><script type="text/javascript" src="./geolocator _ Flutter Package_files/f(1).txt"></script></head>
+<body class="">
+<header class="site-header">
+  <h1 class="_visuallyhidden">Dart pub</h1>
+  <button class="hamburger"></button>
+  <div class="mask"></div>
+  <div class="nav-wrap">
+    <div class="nav-header"><a class="logo" href="https://pub.dartlang.org/"><img src="./geolocator _ Flutter Package_files/dart-logo.svg" alt="dart pub logo"></a>
+      <div class="_flex-space"></div>
+      <button class="close"></button>
+    </div>
+    <nav class="site-nav">
+      <span>Getting Started:</span>
+      <div class="sub-wrap hoverable">
+        <button class="button">Flutter</button>
+        <div class="sub-nav">
+          <a class="link" target="_blank" rel="noopener" href="https://flutter.io/using-packages/">Using Packages</a>
+          <a class="link" target="_blank" rel="noopener" href="https://flutter.io/developing-packages/">Developing Packages and Plugins</a>
+        </div>
+      </div>
+      <div class="sub-wrap hoverable">
+        <button class="button">Web &amp; Server</button>
+        <div class="sub-nav">
+          <a class="link" target="_blank" rel="noopener" href="https://www.dartlang.org/tools/pub/get-started">Using Packages</a>
+          <a class="link" target="_blank" rel="noopener" href="https://www.dartlang.org/tools/pub/publishing">Publishing a Package</a>
+          <a class="link" target="_blank" rel="noopener" href="https://www.dartlang.org/tools/pub">Overview</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+  <div class="_banner-bg">
+    <main class="package-banner">
+      <form class="search-bar" action="https://pub.dartlang.org/flutter/packages">
+        <input class="input" name="q" placeholder="Search Flutter-compatible packages" autocomplete="on" autofocus="autofocus">
+        <button class="icon"></button>
+      </form>
+    </main>
+  </div>
+
+
+
+<main>
+  
+<div class="package-header">
+  <h2 class="title">geolocator 4.0.1</h2>
+  <div class="metadata">
+    Published <span>Apr 24, 2019</span>
+    <!-- &bull; Downloads: X -->
+    <div class="tags">    <a class="package-tag" href="https://pub.dartlang.org/flutter/packages" title="Compatible with the Flutter platform.">Flutter</a>
+</div>
+  </div>
+</div>
+
+<div class="package-container">
+  <div class="main tabs-content">
+    <ul class="package-tabs js-tabs">
+      <li class="tab -active" data-name="-readme-tab-" role="button">README.md</li>
+      <li class="tab" data-name="-changelog-tab-" role="button">CHANGELOG.md</li>
+      <li class="tab" data-name="-example-tab-" role="button">Example</li>
+      <li class="tab" data-name="-installing-tab-" role="button">Installing</li>
+      <li class="tab" data-name="-versions-tab-" role="button">Versions</li>
+      <li class="tab" data-name="-analysis-tab-" role="button">
+        <div class="score-box"><span class="number -solid" title="Analysis and more details.">99</span></div>
+      </li>
+    </ul>
+      <section class="content -active js-content markdown-body" data-name="-readme-tab-">
+        <h1 class="hash-header" id="flutter-geolocator-plugin">Flutter Geolocator Plugin <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#flutter-geolocator-plugin">#</a></h1>
+<p><a href="https://pub.dartlang.org/packages/geolocator"><img alt="pub package" src="./geolocator _ Flutter Package_files/geolocator.svg"></a></p>
+<p>A Flutter geolocation plugin which provides easy access to the platform specific location services (<a href="https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient">FusedLocationProviderClient</a> or if not available the <a href="https://developer.android.com/reference/android/location/LocationManager">LocationManager</a> on Android and <a href="https://developer.apple.com/documentation/corelocation/cllocationmanager">CLLocationManager</a> on iOS).</p><table><thead><tr><th>Branch</th><th>Build Status </th></tr></thead><tbody><tr><td>develop</td><td><a href="https://travis-ci.com/BaseflowIT/flutter-geolocator"><img alt="Build Status" src="./geolocator _ Flutter Package_files/passing.svg"></a></td></tr><tr><td>master</td><td><a href="https://travis-ci.com/BaseflowIT/flutter-geolocator"><img alt="Build Status" src="./geolocator _ Flutter Package_files/passing(1).svg"></a></td></tr></tbody></table>
+<h2 class="hash-header" id="features">Features <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#features">#</a></h2><ul><li>Get the current location of the device;</li><li>Get the last known location;</li><li>Get continuous location updates;</li><li>Check if location services are enabled on the device;</li><li>Translate an address to geocoordinates and vice verse (a.k.a. Geocoding);</li><li>Calculate the distance (in meters) between two geocoordinates;</li><li>Check the availability of Google Play services (on Android only).</li></ul>
+<h2 class="hash-header" id="usage">Usage <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#usage">#</a></h2>
+<p>To use this plugin, add <code>geolocator</code> as a <a href="https://flutter.io/platform-plugins/">dependency in your pubspec.yaml file</a>. For example:</p>
+<pre><code class="language-yaml hljs"><span class="hljs-attr">dependencies:</span>
+<span class="hljs-attr">  geolocator:</span> <span class="hljs-string">'^3.0.1'</span>
+</code></pre>
+<blockquote>
+<p><strong>NOTE:</strong> There's a known issue with integrating plugins that use Swift into a Flutter project created with the Objective-C template. See issue <a href="https://github.com/flutter/flutter/issues/16049">Flutter#16049</a> for help on integration.</p></blockquote>
+<h2 class="hash-header" id="api">API <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#api">#</a></h2>
+<h3 class="hash-header" id="geolocation">Geolocation <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#geolocation">#</a></h3>
+<p>To query the current location of the device simply make a call to the <code>getCurrentPosition</code> method:</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+Position position = <span class="hljs-keyword">await</span> Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+</code></pre>
+<p>To query the last known location retrieved stored on the device you can use the <code>getLastKnownPosition</code> method (note that this can result in a <code>null</code> value when no location details are available):</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+Position position = <span class="hljs-keyword">await</span> Geolocator().getLastKnownPosition(desiredAccuracy: LocationAccuracy.high);
+</code></pre>
+<p>To listen for location changes you can subscribe to the <code>onPositionChanged</code> stream. Supply an instance of the <code>LocationOptions</code> class to configure
+the desired accuracy and the minimum distance change (in meters) before updates are send to the application.</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+<span class="hljs-keyword">var</span> geolocator = Geolocator();
+<span class="hljs-keyword">var</span> locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: <span class="hljs-number">10</span>);
+
+StreamSubscription&lt;Position&gt; positionStream = geolocator.getPositionStream(locationOptions).listen(
+    (Position position) {
+        <span class="hljs-built_in">print</span>(_position == <span class="hljs-keyword">null</span> ? <span class="hljs-string">'Unknown'</span> : _position.latitude.toString() + <span class="hljs-string">', '</span> + _position.longitude.toString());
+    });
+</code></pre>
+<p>To check if location services are enabled you can call the <code>checkGeolocationPermissionStatus</code> method. This method returns a value of the <code>GeolocationStatus</code> enum indicating the availability of the location services on the device. Optionally you can specify if you want to test for <code>GeolocationPermission.locationAlways</code> or <code>GeolocationPermission.locationWhenInUse</code> (by default <code>GeolocationPermission.location</code> is used, which checks for either one of the previously mentioned permissions). Example usage:</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+GeolocationStatus geolocationStatus  = <span class="hljs-keyword">await</span> Geolocator().checkGeolocationPermissionStatus();
+</code></pre>
+<p>By default <code>Geolocator</code> will use <code>FusedLocationProviderClient</code> on Android when Google Play Services are available. It will fall back to <code>LocationManager</code> when it is not available. You can override the behaviour by setting <code>forceAndroidLocationManager</code>.</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+Geolocator geolocator = Geolocator()..forceAndroidLocationManager = <span class="hljs-keyword">true</span>;
+GeolocationStatus geolocationStatus  = <span class="hljs-keyword">await</span> geolocator.checkGeolocationPermissionStatus();
+</code></pre>
+<p>To check if location services are enabled(Location Service(GPS) turned on) on the device <code>checkGeolocationPermissionStatus</code> will return <code>disabled</code> state if location service feature is disabled (or not available) on the device.</p>
+<h3 class="hash-header" id="geocoding">Geocoding <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#geocoding">#</a></h3>
+<p>To translate an address into latitude and longitude coordinates you can use the <code>placemarkFromAddress</code> method:</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+<span class="hljs-built_in">List</span>&lt;Placemark&gt; placemark = <span class="hljs-keyword">await</span> Geolocator().placemarkFromAddress(<span class="hljs-string">"Gronausestraat 710, Enschede"</span>);
+</code></pre>
+<p>If you want to translate latitude and longitude coordinates into an address you can use the <code>placemarkFromCoordinates</code> method:</p>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+<span class="hljs-built_in">List</span>&lt;Placemark&gt; placemark = <span class="hljs-keyword">await</span> Geolocator().placemarkFromCoordinates(<span class="hljs-number">52.2165157</span>, <span class="hljs-number">6.9437819</span>);
+</code></pre>
+<p>Both the <code>placemarkFromAddress</code> and <code>placemarkFromCoordinates</code> accept an optional <code>localeIdentifier</code> parameter. This paramter can be used to enforce the resulting placemark to be formatted (and translated) according to the specified locale. The <code>localeIdentifier</code> should be formatted using the syntax: [languageCode]_[countryCode]. Use the <a href="http://www.loc.gov/standards/iso639-2/php/English_list.php">ISO 639-1 or ISO 639-2</a> standard for the language code and the 2 letter <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1</a> standard for the country code. Some examples are:</p><table><thead><tr><th>Locale identifier</th><th>Description</th></tr></thead><tbody><tr><td>en</td><td>All English speakers (will translate all attributes to English)</td></tr><tr><td>en_US</td><td>English speakers in the United States of America</td></tr><tr><td>en_UK</td><td>English speakers in the United Kingdom</td></tr><tr><td>nl_NL</td><td>Dutch speakers in The Netherlands</td></tr><tr><td>nl_BE</td><td>Dutch speakers in Belgium</td></tr></tbody></table>
+<h3 class="hash-header" id="calculate-distance">Calculate distance <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#calculate-distance">#</a></h3>
+<p>To calculate the distance (in meters) between two geocoordinates you can use the <code>distanceBetween</code> method. The <code>distanceBetween</code> method takes four parameters:</p><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>startLatitude</td><td>double</td><td>Latitude of the start position</td></tr><tr><td>startLongitude</td><td>double</td><td>Longitude of the start position</td></tr><tr><td>endLatitude</td><td>double</td><td>Latitude of the destination position</td></tr><tr><td>endLongitude</td><td>double</td><td>Longitude of the destination position</td></tr></tbody></table>
+<pre><code class="language-dart hljs"><span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+
+<span class="hljs-built_in">double</span> distanceInMeters = <span class="hljs-keyword">await</span> Geolocator().distanceBetween(<span class="hljs-number">52.2165157</span>, <span class="hljs-number">6.9437819</span>, <span class="hljs-number">52.3546274</span>, <span class="hljs-number">4.8285838</span>);
+</code></pre>
+<p>See also the <a href="https://github.com/baseflowit/flutter-geolocator/blob/master/example/lib/main.dart">example</a> project for a complete implementation.</p>
+<h2 class="hash-header" id="permissions">Permissions <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#permissions">#</a></h2>
+<h3 class="hash-header" id="android">Android <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#android">#</a></h3>
+<p>On Android you'll need to add either the <code>ACCESS_COARSE_LOCATION</code> or the <code>ACCESS_FINE_LOCATION</code> permission to your Android Manifest. Todo so open the AndroidManifest.xml file and one of the following two lines as direct children of the <code>&lt;manifest&gt;</code> tag:</p>
+<pre><code class="language-xml hljs"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.ACCESS_FINE_LOCATION"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.permission.ACCESS_COARSE_LOCATION"</span> /&gt;</span>
+</code></pre>
+<blockquote>
+<p><strong>NOTE:</strong> Specifying the <code>ACCESS_COARSE_LOCATION</code> permission results in location updates with an accuracy approximately equivalant to a city block. More information can be found <a href="https://developer.android.com/training/location/retrieve-current#permissions">here</a>.</p></blockquote>
+<h3 class="hash-header" id="ios">iOS <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#ios">#</a></h3>
+<p>On iOS you'll need to add the <code>NSLocationWhenInUseUsageDescription</code> to your Info.plist file in order to access the device's location. Simply open your Info.plist file and add the following:</p>
+<pre><code class="language-xml hljs"><span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSLocationWhenInUseUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>This app needs access to location when open.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+</code></pre>
+<p>If you would like to access the device's location when your App is running in the background, you should also add the <code>NSLocationAlwaysAndWhenInUseUsageDescription</code> (if your App support iOS 10 or earlier you should also add the key <code>NSLocationAlwaysUsageDescription</code>) key to your Info.plist file:</p>
+<pre><code class="language-xml hljs"><span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSLocationAlwaysUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>This app needs access to location when in the background.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSLocationAlwaysAndWhenInUseUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>This app needs access to location when open and in the background.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+</code></pre>
+<h3 class="hash-header" id="location-accuracy">Location accuracy <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#location-accuracy">#</a></h3>
+<p>The table below outlines the accuracy options per platform:</p><table><thead><tr><th></th><th style="text-align: right;">Android</th><th style="text-align: right;">iOS</th></tr></thead><tbody><tr><td><strong>lowest</strong></td><td style="text-align: right;">500m</td><td style="text-align: right;">3000m</td></tr><tr><td><strong>low</strong></td><td style="text-align: right;">500m</td><td style="text-align: right;">1000m</td></tr><tr><td><strong>medium</strong></td><td style="text-align: right;">100 - 500m</td><td style="text-align: right;">100m</td></tr><tr><td><strong>high</strong></td><td style="text-align: right;">0 - 100m</td><td style="text-align: right;">10m</td></tr><tr><td><strong>best</strong></td><td style="text-align: right;">0 - 100m</td><td style="text-align: right;">~0m</td></tr><tr><td><strong>bestForNavigation</strong></td><td style="text-align: right;">0 - 100m</td><td style="text-align: right;"><a href="https://developer.apple.com/documentation/corelocation/kcllocationaccuracybestfornavigation">Optimized for navigation</a></td></tr></tbody></table>
+<h2 class="hash-header" id="issues">Issues <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#issues">#</a></h2>
+<p>Please file any issues, bugs or feature request as an issue on our <a href="https://github.com/BaseflowIT/flutter-geolocator/issues">GitHub</a> page.</p>
+<h2 class="hash-header" id="want-to-contribute">Want to contribute <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#want-to-contribute">#</a></h2>
+<p>If you would like to contribute to the plugin (e.g. by improving the documentation, solving a bug or adding a cool new feature), please carefully review our <a href="https://github.com/baseflowit/flutter-geolocator/blob/master/CONTRIBUTING.md">contribution guide</a> and send us your <a href="https://github.com/BaseflowIT/flutter-geolocator/pulls">pull request</a>.</p>
+<h2 class="hash-header" id="author">Author <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#author">#</a></h2>
+<p>This Geolocator plugin for Flutter is developed by <a href="https://baseflow.com/">Baseflow</a>. You can contact us at <a href="mailto:hello@baseflow.com">hello@baseflow.com</a></p>
+
+      </section>
+      <section class="content js-content markdown-body" data-name="-changelog-tab-">
+        <h2 id="401">[4.0.1]</h2><ul><li>Updated to latest version of the Location Permissions plugin (1.1.0).</li></ul>
+<h2 id="400">[4.0.0]</h2><ul><li>Overhauled the permissions system to make sure the plugin only depends on the location API. This means when using this version of the plugin Apple requires only entries for the <code>NSLocationWhenInUseUsageDescription</code> and/ or <code>NSLocationAlwaysUsageDescription</code> in the <code>Info.plist</code>.</li><li><strong>breaking</strong> As part of the permission system overhaul, we removed the <code>disabled</code> permission status. To check if the location services are running you should call the <code>isLocationServiceEnabled</code> method. This means you can now also request permissions when the location services are disabled.</li></ul>
+<h2 id="301">[3.0.1]</h2><ul><li>Updated dependencies on Permission Handler and Google API Availability to remove Kotlin dependency.</li></ul>
+<h2 id="300">[3.0.0]</h2><ul><li><strong>breaking</strong> Updated to support AndroidX;</li><li>Added API method <code>isLocationServiceEnabled</code> to check if location services are enabled or disabled</li><li>Removed method <code>checkGeolocationStatus</code> (marked deprecated in version 1.6.4);</li><li>Updated to latest version of Permission Handler plugin to solve some small issues on iOS;</li><li>Added Swift version number to podspec file;</li><li>Added ProGuard support for Android;</li><li>Updated static code analyses to confirm to latest recommendations from Flutter team.</li></ul>
+<h2 id="211">[2.1.1]</h2><ul><li>Updated iOS code to Swift 4.2</li><li>Updated to latest version of the permission_handler plugin (v2.1.2)</li></ul>
+<h2 id="210">[2.1.0]</h2><ul><li>Updated dependencies on Permission Handler and Google API Availability plugins.</li></ul>
+<h2 id="202">[2.0.2]</h2><ul><li>Updated Gradle version</li></ul>
+<h2 id="201">[2.0.1]</h2><ul><li>Bug fix where a null reference exception occurs because the timestamp of the <code>Position</code> could be <code>null</code> when fetching a <code>Placemark</code> using the <code>placemarkFromAddress</code> or <code>placemarkFromCoordinates</code> methods.</li></ul>
+<h2 id="200">[2.0.0]</h2><ul><li><strong>breaking</strong> The <code>getPositionStream</code> method now directly returns an instance of the <code>Stream&lt;Position&gt;</code> class, meaning there is no need to <code>await</code> the method before being able to access the stream;</li><li><strong>breaking</strong> Arguments for the methods <code>getCurrentPosition</code> and <code>getLastKnownPosition</code> are now named optional parameters instead of positional optional parameters;</li><li>By default Geolocator will use FusedLocationProviderClient on Android when Google Play Services are available. It will fall back to LocationManager when it is not available. You can override the behaviour by setting <code>Geolocator geolocator = Geolocator()..forceAndroidLocationManager = true;</code></li><li>Allow developers to specify a desired interval for active location updates, in milliseconds (Android only).</li></ul>
+<h2 id="170">[1.7.0]</h2><ul><li>Added timestamp to instances of the <code>Position</code> class indicating when the GPS fix was acquired;</li><li>Updated the dependency on the <code>PermissionHandler</code> to version &gt;=2.0.0 &lt;3.0.0. </li></ul>
+<h2 id="165">[1.6.5]</h2><ul><li>Fixed bug on Android when not supplying a locale while using the  Geocoding features.</li></ul>
+<h2 id="164">[1.6.4]</h2><ul><li>Added support to supply a locale when using the <code>placemarkFromAddress</code> and <code>placemarkFromCoordinates</code> methods.</li><li>Deprecated the static method <code>checkGeolocationStatus</code> in favor of the instance method <code>checkGeolocationPermissionStatus</code> (the static version will be removed in version 2.0 of the Geolocator plugin).</li></ul>
+<h2 id="163">[1.6.3]</h2><ul><li>Added feature to check the availability of Google Play services on the device (using the <code>checkGooglePlayServicesAvailability</code> method). This will allow developers to implement a more user friendly experience regarding the usage of Google Play services (for more information see the article <a href="https://developers.google.com/android/guides/setup">Set Up Google Play Services</a>);</li><li>Fixed the error <code>'List&lt;dynamic&gt;' is not a subtype of type 'Future&lt;dynamic&gt;'</code> on Flutter 0.6.2 and higher (thanks @fawadkhanucp for reporting the issue and solution);</li><li>Fixed an error when calling the <code>getCurrentPosition</code>, <code>getPositionStream</code>, <code>placemarkFromAddress</code> and <code>placemarkFromCoordinates</code> from an Android background service (thanks @sestegra for reporting the issue and creating a pull-request).</li></ul>
+<h2 id="162">[1.6.2]</h2><ul><li>Hot fix to solve cast exception</li></ul>
+<h2 id="161">[1.6.1]</h2><ul><li>Fixed a bug which caused stationary location updates not to be streamed when using the new <code>FusedLocationProviderClient</code> on Android (thanks @audkar for the PR).</li></ul>
+<h2 id="160">[1.6.0]</h2><ul><li>Use the Location Services (through the <code>FusedLocationProviderClient</code>) on Android if available, otherwise fallback to the <code>LocationManager</code> class;</li><li>Make sure that on Android the last know location is returned immediately on the stream when requesting location updates through the <code>getPositionStream</code> method;</li><li>Updated documentation on adding location permissions on Android.</li></ul>
+<h2 id="150">[1.5.0]</h2><ul><li>It is now possible to check the location permissions using the <code>checkGeolocationStatus</code> method [<a href="https://github.com/BaseflowIT/flutter-geolocator/issues/51">ISSUE #51</a>].</li><li>Improved the example App [<a href="https://github.com/BaseflowIT/flutter-geolocator/issues/54">ISSUE #54</a>]</li><li>Solved a bug on Android causing a memory leak when you stop listening to the position stream.</li><li><strong>breaking</strong> Solved a bug on Android where permissions could be requested more then once simultaniously [<a href="https://github.com/BaseflowIT/flutter-geolocator/issues/58">ISSUE #58</a>]</li><li>Solved a bug on Android where requesting permissions twice would cause the App to crash [<a href="https://github.com/BaseflowIT/flutter-geolocator/issues/61">ISSUE #61</a>]</li></ul>
+<blockquote>
+<p><strong>Important:</strong></p>
+<p>To be able to correctly fix <a href="https://github.com/BaseflowIT/flutter-geolocator/issues/58">issue #58</a> we had to change the <code>getPositionStream</code> method into a <code>async</code> method. This means the signature of the method has been changed from:</p>
+<p><code>Stream&lt;Position&gt; getPositionStream([LocationOptions locationOptions = const LocationOptions()])</code> </p>
+<p>to </p>
+<p><code>Future&lt;Stream&lt;Position&gt;&gt; getPositionStream([LocationOptions locationOptions = const LocationOptions()])</code>. </p>
+<p>Meaning as a developer you'll now have to <code>await</code> the result of the method to get access to the actual stream.</p></blockquote>
+<h2 id="140">[1.4.0]</h2><ul><li>Added feature to query the last known location that is stored on the device using the <code>getLastKnownLocation</code> method;</li><li><strong>breaking</strong> Renamed the <code>getPosition</code> to <code>getCurrentPosition</code>;</li><li>Fixed bug where calling <code>getCurrentPosition</code> on Android resulted in returning the last known location;</li><li><strong>breaking</strong> Renamed methods <code>toPlacemark</code> and <code>fromPlacemark</code> respectively to the, more meaningfull names, <code>placemarkFromAddress</code> and <code>placemarkFromCoordinates</code>;</li></ul>
+<h2 id="131">[1.3.1]</h2><ul><li>Added support for iOS <code>kCLLocationAccurayBestForNavigation</code> (defaults to <code>best</code> when on Android).</li></ul>
+<h2 id="130">[1.3.0]</h2><ul><li>Added the option to check the distance between two geocoordinates (using the <code>distanceBetween</code> method).</li></ul>
+<h2 id="122">[1.2.2]</h2><ul><li>Make sure that an Android App using the plugin is informed when the platform stops transmitting location updates.</li></ul>
+<h2 id="121">[1.2.1]</h2><ul><li>Added feature to throttle the amount of locations updates based on a supplied distance filter.</li></ul>
+<blockquote>
+<p><strong>Important:</strong></p>
+<p>This introduces a breaking change since the signature of the <code>getPositionStream</code> has changed from <code>getPositionStream(LocationAccuracy accuracy)</code> to
+<code>getPositionStream(LocationOptions locationOptions)</code> .</p></blockquote><ul><li> Made some small changes to ensure the plugin no longer is depending on JAVA 8, meaning the plugin will run using the default Android configuration.</li></ul>
+<h2 id="120">[1.2.0]</h2><ul><li>Added support to translate an address into geocoordinates and vice versa (a.k.a. Geocoding). See the <a href="https://github.com/baseflowit/flutter-geolocator/blob/master/README.md">README.md</a> file for more information.</li></ul>
+<h2 id="112">[1.1.2]</h2><ul><li>Fixed reported formatting issues</li></ul>
+<h2 id="111">[1.1.1]</h2><ul><li>Fixed a warning generated by xCode when compiling the example project (see <a href="https://github.com/BaseflowIT/flutter-geolocator/issues/28">issue #28</a>)</li><li>Fixed some warnings generated by Dart static code analyser, improving code quality</li></ul>
+<h2 id="110">[1.1.0]</h2><ul><li>Introduced the option to supply a desired accuracy. </li></ul>
+<blockquote>
+<p><strong>Important:</strong> </p>
+<p>This introduces a breaking change, the <code>getPosition</code> and <code>onPositionChanged</code> properties have been replaced by methods (<code>getPosition([LocationAccuracy desiredAccuracy = LocationAccuracy.Best])</code> and <code>getPositionStream([LocationAccuracy desiredAccuracy = LocationAccuracy.Best])</code> respectively) accepting a parameter to indicate the desired accuracy.</p></blockquote><ul><li>Updated the Android part to make use of the <a href="https://developer.android.com/reference/android/location/LocationManager">LocationManager</a> instead of the <a href="https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient">FusedLocationProviderClient</a></li><li>Improved support for handling position requests that happen in rapid succession.</li></ul>
+<h2 id="100">[1.0.0]</h2><ul><li>Updated documentation</li><li>API defined stable</li></ul>
+<h2 id="002">[0.0.2]</h2><ul><li>Solved problem with missing geolocator-Swift.h header file (see also issue <a href="https://github.com/flutter/flutter/issues/16049">Flutter#16049</a>).</li></ul>
+<h2 id="001">[0.0.1]</h2><ul><li>Initial release</li></ul>
+
+      </section>
+      <section class="content js-content markdown-body" data-name="-example-tab-">
+        <p style="font-family: monospace"><b>example/README.md</b></p>
+<h1 class="hash-header" id="geolocator_example">geolocator_example <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#geolocator_example">#</a></h1>
+<p>Demonstrates how to use the geolocator plugin.</p>
+<h2 class="hash-header" id="getting-started">Getting Started <a class="hash-link" href="https://pub.dartlang.org/packages/geolocator#getting-started">#</a></h2>
+<p>For help getting started with Flutter, view our online
+<a href="https://flutter.io/">documentation</a>.</p>
+
+      </section>
+    <section class="content js-content" data-name="-installing-tab-">
+<h2>Use this package as a library</h2>
+<h3>1. Depend on it</h3>
+<p>Add this to your package's pubspec.yaml file:</p>
+<pre><code class="language-yaml hljs">
+<span class="hljs-attr">dependencies:</span>
+<span class="hljs-attr">  </span><strong><span class="hljs-attr">geolocator:</span> <span class="hljs-string">^4.0.1</span></strong>
+
+</code></pre>
+<h3>2. Install it</h3>
+<p>You can install packages from the command line:</p>
+  <p>with Flutter:</p>
+  <pre><code class="language-shell hljs"><span class="hljs-meta">
+$</span><span class="bash"> </span><strong><span class="bash">flutter packages get</span></strong>
+
+</code></pre>
+<p>Alternatively, your editor might support <code>flutter packages get</code>.
+  Check the docs for your editor to learn more.</p>
+  <h3>3. Import it</h3>
+  <p>Now in your Dart code, you can use:
+  </p>
+  <pre><code class="language-dart hljs">
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:geolocator/geolocator.dart'</span>;
+  </code></pre>
+
+    </section>
+    <section class="content js-content" data-name="-versions-tab-">
+      
+<table class="version-table" data-package="geolocator">
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Uploaded</th>
+      <th class="documentation" width="60">Documentation</th>
+      <th class="archive" width="60">Archive</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr data-version="4.0.1">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/4.0.1">4.0.1</a></strong></td>
+  <td>Apr 24, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/4.0.1/" rel="nofollow" title="Go to the documentation of geolocator 4.0.1">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 4.0.1">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-4.0.1.tar.gz" title="Download geolocator 4.0.1 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 4.0.1 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="4.0.0">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/4.0.0">4.0.0</a></strong></td>
+  <td>Apr 17, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/4.0.0/" rel="nofollow" title="Go to the documentation of geolocator 4.0.0">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 4.0.0">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-4.0.0.tar.gz" title="Download geolocator 4.0.0 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 4.0.0 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="3.0.1">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/3.0.1">3.0.1</a></strong></td>
+  <td>Mar 5, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/3.0.1/" rel="nofollow" title="Go to the documentation of geolocator 3.0.1">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 3.0.1">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-3.0.1.tar.gz" title="Download geolocator 3.0.1 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 3.0.1 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="3.0.0">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/3.0.0">3.0.0</a></strong></td>
+  <td>Feb 13, 2019</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/3.0.0/" rel="nofollow" title="Go to the documentation of geolocator 3.0.0">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 3.0.0">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-3.0.0.tar.gz" title="Download geolocator 3.0.0 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 3.0.0 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="2.1.1">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/2.1.1">2.1.1</a></strong></td>
+  <td>Nov 30, 2018</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/2.1.1/" rel="nofollow" title="Go to the documentation of geolocator 2.1.1">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 2.1.1">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-2.1.1.tar.gz" title="Download geolocator 2.1.1 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 2.1.1 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="2.1.0">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/2.1.0">2.1.0</a></strong></td>
+  <td>Oct 11, 2018</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/2.1.0/" rel="nofollow" title="Go to the documentation of geolocator 2.1.0">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 2.1.0">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-2.1.0.tar.gz" title="Download geolocator 2.1.0 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 2.1.0 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="2.0.2">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/2.0.2">2.0.2</a></strong></td>
+  <td>Oct 10, 2018</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/2.0.2/" rel="nofollow" title="Go to the documentation of geolocator 2.0.2">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 2.0.2">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-2.0.2.tar.gz" title="Download geolocator 2.0.2 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 2.0.2 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="2.0.1">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/2.0.1">2.0.1</a></strong></td>
+  <td>Sep 25, 2018</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/2.0.1/" rel="nofollow" title="Go to the documentation of geolocator 2.0.1">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 2.0.1">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-2.0.1.tar.gz" title="Download geolocator 2.0.1 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 2.0.1 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="2.0.0">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/2.0.0">2.0.0</a></strong></td>
+  <td>Sep 21, 2018</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/2.0.0/" rel="nofollow" title="Go to the documentation of geolocator 2.0.0">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 2.0.0">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-2.0.0.tar.gz" title="Download geolocator 2.0.0 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 2.0.0 archive">
+    </a>
+  </td>
+</tr>
+
+    
+<tr data-version="1.7.0">
+  <td><strong><a href="https://pub.dartlang.org/packages/geolocator/versions/1.7.0">1.7.0</a></strong></td>
+  <td>Sep 10, 2018</td>
+  <td class="documentation" data-has-documentation="1">
+    <a href="https://pub.dartlang.org/documentation/geolocator/1.7.0/" rel="nofollow" title="Go to the documentation of geolocator 1.7.0">
+        <img src="./geolocator _ Flutter Package_files/ic_drive_document_black_24dp.svg" alt="Go to the documentation of geolocator 1.7.0">
+    </a>
+  </td>
+  <td class="archive">
+    <a href="https://storage.googleapis.com/pub-packages/packages/geolocator-1.7.0.tar.gz" title="Download geolocator 1.7.0 archive">
+      <img src="./geolocator _ Flutter Package_files/ic_get_app_black_24dp.svg" alt="Download geolocator 1.7.0 archive">
+    </a>
+  </td>
+</tr>
+
+  </tbody>
+</table>
+
+  <p>
+    <a href="https://pub.dartlang.org/packages/geolocator/versions">All 29 versions...</a>
+  </p>
+
+    </section>
+    <section class="content js-content" data-name="-analysis-tab-">
+      <table id="scores-table">
+  <tbody><tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted">Popularity:</span>
+        <div class="tooltip-content">
+          Describes how popular the package is relative to other packages.
+          <a href="https://pub.dartlang.org/help#popularity">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td class="score-value">
+      
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 99%;">99</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 99%; background: rgb(191, 191, 192);"></div>
+    </div>
+</div>
+
+    </td>
+  </tr>
+  <tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted">Health:</span>
+        <div class="tooltip-content">
+          Code health derived from static analysis.
+          <a href="https://pub.dartlang.org/help#health">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td class="score-value">
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 100%;">100</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 100%; background: rgb(192, 192, 192);"></div>
+    </div>
+</div>
+</td>
+  </tr>
+  <tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted">Maintenance:</span>
+        <div class="tooltip-content">
+          Reflects how tidy and up-to-date the package is.
+          <a href="https://pub.dartlang.org/help#maintenance">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td class="score-value">
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 100%;">100</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 100%; background: rgb(192, 192, 192);"></div>
+    </div>
+</div>
+</td>
+  </tr>
+  <tr>
+    <td class="score-name">
+      <div class="tooltip-base hoverable">
+        <span class="tooltip-dotted"><b>Overall:</b></span>
+        <div class="tooltip-content">
+          Weighted score of the above.
+          <a href="https://pub.dartlang.org/help#overall-score">[more]</a>
+        </div>
+      </div>
+    </td>
+    <td>
+<div class="score-percent-row">
+    <div class="score-percent" style="left: 99%;">99</div>
+</div>
+
+<div class="score-progress-row">
+    <div class="score-progress-frame">
+        <div class="score-progress" style="width: 99%; background: rgb(1, 117, 194);"></div>
+    </div>
+</div>
+</td>
+  </tr>
+</tbody></table>
+
+<div style="text-align: right; font-size: 10pt;">Learn more about <a href="https://pub.dartlang.org/help#scoring">scoring</a>.</div>
+
+<hr>
+
+<p>
+  We analyzed this package on Apr 27, 2019, and provided a score, details, and suggestions below.
+  Analysis was completed with status <i>completed</i> using:
+</p>
+
+<ul>
+  <li>Dart: 2.2.0</li>
+  <li>pana: 0.12.14</li>
+<li>Flutter: 1.4.7</li>
+</ul>
+
+<h4>Platforms</h4>
+
+<p>Detected platforms: Flutter</p>
+<blockquote><p>References Flutter, and has no conflicting libraries.</p>
+</blockquote>
+
+
+<h4>Health suggestions</h4>
+<div class="suggestion-row">
+  <div class="suggestion-title">
+    <span class="suggestion-icon-info"></span>
+    <p>Format <code>lib/geolocator.dart</code>.</p>
+
+  </div>
+  <div class="suggestion-description">
+    <p>Run <code>flutter format</code> to format <code>lib/geolocator.dart</code>.</p>
+
+    
+  </div>
+</div>
+
+
+
+<h4>Dependencies</h4>
+<div class="overflow-x">
+<table class="dependency-table">
+  <tbody><tr>
+    <th>Package</th>
+    <th>Constraint</th>
+    <th>Resolved</th>
+    <th>Available</th>
+  </tr>
+  <tr>
+    <th colspan="4" class="sub-header">Direct dependencies</th>
+  </tr>
+  <tr>
+    <td>Dart SDK</td>
+    <td>&gt;=2.0.0-dev.68.0 &lt;3.0.0</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>flutter</td>
+    <td></td>
+    <td>0.0.0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/google_api_availability">google_api_availability</a></td>
+    <td>^2.0.0</td>
+    <td>2.0.0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/location_permissions">location_permissions</a></td>
+    <td>^1.1.0</td>
+    <td>1.1.0</td>
+    <td>2.0.0</td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/meta">meta</a></td>
+    <td>^1.0.5</td>
+    <td>1.1.6</td>
+    <td>1.1.7</td>
+  </tr>
+
+  <tr>
+    <th colspan="4" class="sub-header">Transitive dependencies</th>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/collection">collection</a></td>
+    <td></td>
+    <td>1.14.11</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/sky_engine">sky_engine</a></td>
+    <td></td>
+    <td>0.0.99</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/typed_data">typed_data</a></td>
+    <td></td>
+    <td>1.1.6</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://pub.dartlang.org/packages/vector_math">vector_math</a></td>
+    <td></td>
+    <td>2.0.8</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <th colspan="4" class="sub-header">Dev dependencies</th>
+  </tr>
+  <tr>
+    <td>flutter_test</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+</tbody></table>
+</div>
+
+    </section>
+  </div>
+
+  <aside class="sidebar sidebar-content">
+  <h3 class="title">About</h3>
+    <p>Geolocation plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API for generic location (GPS etc.) functions.</p>
+  <p>
+    <a class="link" href="https://github.com/baseflowit/flutter-geolocator">Repository (GitHub)</a><br>
+    <a class="link" href="https://github.com/baseflowit/flutter-geolocator/issues">View/report issues</a><br>
+    <a class="link" href="https://pub.dartlang.org/documentation/geolocator/latest/">API reference</a><br>
+  </p>
+
+  <h3 class="title">Author</h3>
+  <div><span class="author"><a href="mailto:hello@baseflow.com" title="Email hello@baseflow.com"><i class="email-icon"></i></a> <a href="https://pub.dartlang.org/packages?q=email%3Ahello%40baseflow.com" title="Search packages with hello@baseflow.com" rel="nofollow"><i class="search-icon"></i></a> Baseflow</span></div>
+
+  <h3 class="title">Uploader</h3>
+  <p><span class="author"><a href="mailto:maurits@baseflow.com" title="Email maurits@baseflow.com"><i class="email-icon"></i></a> <a href="https://pub.dartlang.org/packages?q=email%3Amaurits%40baseflow.com" title="Search packages with maurits@baseflow.com" rel="nofollow"><i class="search-icon"></i></a> maurits@baseflow.com</span><br><span class="author"><a href="mailto:martijn@baseflow.com" title="Email martijn@baseflow.com"><i class="email-icon"></i></a> <a href="https://pub.dartlang.org/packages?q=email%3Amartijn%40baseflow.com" title="Search packages with martijn@baseflow.com" rel="nofollow"><i class="search-icon"></i></a> martijn@baseflow.com</span></p>
+
+    <h3 class="title">License</h3>
+    <p>MIT (<a href="https://github.com/baseflowit/flutter-geolocator/blob/master/LICENSE">LICENSE</a>)</p>
+
+    <h3 class="title">Dependencies</h3>
+    <p><a href="https://pub.dartlang.org/packages/flutter">flutter</a>, <a href="https://pub.dartlang.org/packages/google_api_availability">google_api_availability</a>, <a href="https://pub.dartlang.org/packages/location_permissions">location_permissions</a>, <a href="https://pub.dartlang.org/packages/meta">meta</a></p>
+
+  <h3 class="title">More</h3>
+  <p><a href="https://pub.dartlang.org/packages?q=dependency%3Ageolocator" rel="nofollow">Packages that depend on geolocator</a></p>
+</aside>
+
+</div>
+
+<script type="application/ld+json">
+{"@context":"http://schema.org","@type":"SoftwareSourceCode","name":"geolocator","version":"4.0.1","description":"geolocator - Geolocation plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API for generic location (GPS etc.) functions.","url":"https://pub.dartlang.org/packages/geolocator","dateCreated":"2018-06-22T13:35:20.452413Z","dateModified":"2019-04-24T06:38:08.530836Z","programmingLanguage":"Dart","image":"https://pub.dartlang.org/static/img/dart-logo-400x400.png","license":"https://github.com/baseflowit/flutter-geolocator/blob/master/LICENSE"}
+</script>
+
+</main>
+
+<footer class="site-footer">
+  <a class="link" href="https://www.dartlang.org/">Dart language</a>
+  <a class="link" href="https://www.google.com/intl/en/policies/terms/">Terms</a>
+  <a class="link" href="https://www.google.com/intl/en/policies/privacy/">Privacy</a>
+  <a class="link" href="https://pub.dartlang.org/help">Help</a>
+  <a class="link" href="https://pub.dartlang.org/feed.atom"><img src="./geolocator _ Flutter Package_files/atom-feed-icon-32x32.png" class="inline-icon"></a>
+  <a class="link github_issue" href="https://github.com/dart-lang/pub-dartlang-dart/issues/new?body=URL%3A+https%3A%2F%2Fpub.dartlang.org%2Fpackages%2Fgeolocator%0A%0A%3CDescribe+your+issue+or+suggestion+here%3E&amp;title=%3CSummarize+your+issues+here%3E&amp;labels=Area%3A+site+feedback">Report an issue with this site</a>
+</footer>
+<script src="./geolocator _ Flutter Package_files/highlight.pack.js"></script>
+<script src="./geolocator _ Flutter Package_files/init.js"></script>
+
+
+</body></html>
