@@ -4,13 +4,14 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'entry.dart';
+import 'model.interface.dart';
 
-class DatabaseHelper {
+class DatabaseHelper<T> {
 
   // This is the actual database filename that is saved in the docs directory.
   static final _databaseName = "DOTPunchListDataase.db";
   // Increment this version when you need to change the schema.
-  static final _databaseVersion = 3;
+  static final _databaseVersion = 1;
 
   // Make this a singleton class.
   DatabaseHelper._privateConstructor();
@@ -37,39 +38,47 @@ class DatabaseHelper {
 
   // SQL string to create the database
   Future _onCreate(Database db, int version) async {
+    await db.execute("CREATE TABLE Projects ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "name TEXT,"
+        "description TEXT,"
+        "inactive INTEGER"
+        ")");
+
     await db.execute("CREATE TABLE Entries ("
         "id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "element INTEGER,"
         "location TEXT,"
+        "coordinates TEXT,"
         "title TEXT,"
         "comments TEXT,"
+        "issue TEXT,"
         "images TEXT,"
         "doneImages Text,"
         "status INTEGER,"
-        "time TEXT"
+        "time TEXT,"
+        "project INTEGER,"
+        "remarks TEXT,"
+        "providedBy TEXT"
         ")");
   }
 
-  Future<int> insert(Entry entry) async {
+  Future<int> insert<T extends Model>(T entry, String table) async {
     Database db = await database;
     var map = entry.toJson();
-    int id = await db.insert("Entries", map);
+    int id = await db.insert(table, map);
     return id;
   }
 
-  Future<int> update(Entry entry) async {
+  Future<int> update<T extends Model>(T entry, String table) async {
     Database db = await database;
     var map = entry.toJson();
-    int id = await db.update("Entries", map, where: "id = ?", whereArgs: [entry.Id]);
+    int id = await db.update(table, map, where: "id = ?", whereArgs: [entry.Id]);
     return id;
   }
 
-  Future<int> delete(int id) async {
+  Future<int> delete(int id, table) async {
     Database db = await database;
-    return await db.delete("Entries", where: "Id = ?", whereArgs: [id]);
+    return await db.delete(table, where: "Id = ?", whereArgs: [id]);
   }
-
-// TODO: queryAllWords()
-// TODO: delete(int id)
-// TODO: update(Word word)
 }
