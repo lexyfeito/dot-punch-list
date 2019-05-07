@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:dot_punch_list/DBProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'entry.dart';
 import 'project.dart';
-//import 'package:geolocator/geolocator.dart';
 
 class CreateEditItem extends StatefulWidget {
 
@@ -208,37 +208,38 @@ class _CreateEditItemState extends State<CreateEditItem> {
                               )
                             ],
                           ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                                labelText: 'Location Description'
+                            ),
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Required field.';
+                              }
+                            },
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
+                            controller: locationController,
+                          ),
                           Row(
                             children: <Widget>[
                               Expanded(
                                 child: TextFormField(
                                   decoration: InputDecoration(
-                                    labelText: 'Location',
+                                    labelText: 'Coordinates',
                                   ),
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Required field.';
-                                    }
-                                  },
-                                  maxLines: null,
-                                  keyboardType: TextInputType.multiline,
-                                  controller: locationController,
+                                  controller: coordinatesController,
                                 ),
                               ),
-//                              IconButton(
-//                                color: Colors.green,
-//                                icon: Icon(Icons.location_on),
-//                                onPressed: () async {
-//                                  // Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-//                                },
-//                              )
+                              IconButton(
+                                color: Colors.green,
+                                icon: Icon(Icons.location_on),
+                                onPressed: () async {
+                                  Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+                                  setState(() => coordinatesController.text = "Lat: ${position.latitude}, Lng: ${position.longitude}");
+                                },
+                              )
                             ],
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Coordinates'
-                            ),
-                            controller: coordinatesController,
                           ),
                           Container(
                             margin: EdgeInsets.only(bottom: 10.0),

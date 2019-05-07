@@ -1,4 +1,4 @@
-package com.example.dot_punch_list;
+package com.lfapplications.dot_punch_list;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
