@@ -1,43 +1,58 @@
 import 'dart:io';
 
 import 'package:dot_punch_list/DBProvider.dart';
+import 'package:dot_punch_list/provided.dart';
+import 'package:dot_punch_list/provided_by_new_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'element.dart';
+import 'elements.dart';
 import 'entry.dart';
 import 'project.dart';
+import 'package:image/image.dart';
 
 class CreateEditItem extends StatefulWidget {
 
+  ProvidedBloc _providedBloc;
+  ElementBloc _elementBloc;
   final List<Entry> entries;
   final Project project;
   final Entry entry;
+  final EntryBloc entryBloc;
 
-  CreateEditItem({Key key, this.project, this.entries, this.entry}) : super(key: key);
+  CreateEditItem(this.project, this.entries, this.entry, this.entryBloc, this._providedBloc, this._elementBloc, {Key key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _CreateEditItemState(project: project, entries: entries, entry: entry);
+  State<StatefulWidget> createState() => _CreateEditItemState(project, entries, entry, entryBloc, _providedBloc, _elementBloc);
 }
 
 class _CreateEditItemState extends State<CreateEditItem> {
 
+  ProvidedBloc _providedBloc;
+  ElementBloc _elementBloc;
   bool isEditing = false;
   Project project;
   List<Entry> entries;
   Entry entry;
+  EntryBloc entryBloc;
   Entry newEntry;
   DatabaseHelper _dbHelper;
+  int selectedElementId;
+  int selectedProvidedId;
   var titleController = TextEditingController();
   var descriptionController = TextEditingController();
   var commentController = TextEditingController();
   var remarkController = TextEditingController();
   var locationController = TextEditingController();
   var issueController = TextEditingController();
-  var coordinatesController = TextEditingController();
+  var latCoordController = TextEditingController();
+  var lngCoordController = TextEditingController();
   var providerByController = TextEditingController();
+  var newProvidedBy = TextEditingController();
 
-  _CreateEditItemState({this.project, this.entries, this.entry}) {
+  _CreateEditItemState(this.project, this.entries, this.entry, this.entryBloc, this._providedBloc, this._elementBloc) {
     if (entry != null) {
       isEditing = true;
       newEntry = new Entry(
@@ -60,20 +75,27 @@ class _CreateEditItemState extends State<CreateEditItem> {
 
   @override
   void initState() {
+    super.initState();
+    _elementBloc.elementEventSink.add(null);
+    _providedBloc.providedEventSink.add(null);
     _dbHelper = DatabaseHelper.instance;
+    if (newEntry.Element != null)
+      selectedElementId = newEntry.Element.Id;
+    if (newEntry.ProvidedBy != null)
+      selectedProvidedId = newEntry.ProvidedBy.Id;
     locationController.text = newEntry.Location;
     titleController.text = newEntry.Title;
     commentController.text = newEntry.Comments;
     remarkController.text = newEntry.Remarks;
     issueController.text = newEntry.Issue;
-    coordinatesController.text = newEntry.Coordinates;
-    providerByController.text = newEntry.ProvidedBy;
-
-    super.initState();
+    if (newEntry.Coordinates != null) {
+      latCoordController.text = newEntry.Coordinates.Latitude.toString();
+      lngCoordController.text = newEntry.Coordinates.Longitude.toString();
+    }
   }
 
-  Future getImage(ImageSource source) async {
-    var image = await ImagePicker.pickImage(source: source);
+  Future<File> getImage(ImageSource source) async {
+    var image = await ImagePicker.pickImage(source: source, maxWidth: 500);
 
     return image;
   }
@@ -82,10 +104,15 @@ class _CreateEditItemState extends State<CreateEditItem> {
     getImage(ImageSource.camera);
   }
 
-  Future _openGallery() async {
+  Future<File> _openGallery() async {
     var image = await getImage(ImageSource.gallery);
 
     return image;
+  }
+
+  bool isImage(File image) {
+    var ext = image.path.substring(image.path.lastIndexOf('.'));
+    return ext == '.png' || ext == '.jpg' || ext == '.jpeg';
   }
 
   Future _copyFiles(List<File> images, List<File> from, List<File> contains) async {
@@ -94,8 +121,10 @@ class _CreateEditItemState extends State<CreateEditItem> {
     for (File image in from) {
       if (isEditing && contains.map((File e) => e.path).contains(image.path)) continue;
       var name = image.path.substring(image.path.lastIndexOf('/'));
+//      var decodedImage = decodeImage(image.readAsBytesSync());
+//      var thumbnail = copyResize(decodedImage, width: 300);
+//      File newFile = File('$path$name')..writeAsBytesSync(encodeJpg(thumbnail));
       var newFile = await image.copy('$path$name');
-      // images.add(newFile);
       images.length > 0 ? images[0] = newFile : images.add(newFile);
     }
 
@@ -103,9 +132,7 @@ class _CreateEditItemState extends State<CreateEditItem> {
   }
 
   Future _save() async {
-    if (!_formKey.currentState.validate() || newEntry.Element == null || newEntry.Images.isEmpty || newEntry.Status == null
-    || (newEntry.Status == StatusEnum.done && newEntry.DoneImages.isEmpty)
-    ) return;
+    if (!_formKey.currentState.validate() || selectedElementId == null || selectedProvidedId == null || newEntry.Status == null) return;
 
     List<File> newImagesList = isEditing ? entry.Images : new List<File>();
     List<File> newDoneImagesList = isEditing ? entry.DoneImages : new List<File>();
@@ -115,44 +142,45 @@ class _CreateEditItemState extends State<CreateEditItem> {
     }
 
     if (!isEditing) {
-      newEntry.Location = locationController.text;
-      newEntry.Coordinates = coordinatesController.text;
-      newEntry.Title = titleController.text;
-      newEntry.Comments = commentController.text;
-      newEntry.Issue = issueController.text;
-      newEntry.Images = newImagesList;
-      newEntry.DoneImages = newDoneImagesList;
+      _updateEntry(newEntry, newImagesList, newDoneImagesList);
       newEntry.Time = new DateTime.now();
-      newEntry.Remarks = remarkController.text;
-      newEntry.ProjectModel = project;
-      newEntry.ProvidedBy = providerByController.text;
-      newEntry.Id = await _dbHelper.insert(newEntry, "Entries");
-      setState(() => entries.add(newEntry));
+      entryBloc.entryEventSink.add(AddEntry(newEntry));
     } else {
-      entry.Element = newEntry.Element;
-      entry.Location = locationController.text;
-      entry.Coordinates = coordinatesController.text;
-      entry.Title = titleController.text;
-      entry.Comments = commentController.text;
-      entry.Issue = issueController.text;
-      entry.Images = newImagesList;
-      entry.DoneImages = newDoneImagesList;
+      _updateEntry(entry, newImagesList, newDoneImagesList);
       entry.Status = newEntry.Status;
-      entry.Remarks = remarkController.text;
-      entry.ProjectModel = project;
-      entry.ProvidedBy = providerByController.text;
-      await _dbHelper.update(entry, "Entries");
-      setState(() => entry);
+      entryBloc.entryEventSink.add(EditEntry(entry));
     }
     Navigator.pop(context);
   }
 
+  _updateEntry(Entry e, imageList, doneImageList) {
+    e.Element = _elementBloc.elementsList.firstWhere((element) => element.Id == selectedElementId);
+    e.Location = locationController.text;
+    if ((latCoordController.text != null && latCoordController.text.isNotEmpty) && (lngCoordController.text != null && lngCoordController.text.isNotEmpty))
+      e.Coordinates = new CoordinatesModel(double.parse(latCoordController.text), double.parse(lngCoordController.text));
+    e.Title = titleController.text;
+    e.Comments = commentController.text;
+    e.Issue = issueController.text;
+    e.Images = imageList;
+    e.DoneImages = doneImageList;
+    e.Remarks = remarkController.text;
+    e.ProjectModel = project;
+    // e.ProvidedBy = providerByController.text;
+    e.ProvidedBy = _providedBloc.providedList.firstWhere((provided) => provided.Id == selectedProvidedId);
+  }
+
   final _formKey = GlobalKey<FormState>();
+  final _providedByFormKey = GlobalKey<FormState>();
 
   String _fileName(File file) {
     return file.path.substring(file.path.lastIndexOf('/') + 1);
   }
-  
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,26 +213,40 @@ class _CreateEditItemState extends State<CreateEditItem> {
                           Row(
                             children: <Widget>[
                               Expanded(
-                                child: DropdownButtonFormField(
-                                  items: elements.map((element) {
-                                    return DropdownMenuItem(
-                                      value: element.Element,
-                                      child: Text(element.Name),
+                                child: StreamBuilder(
+                                  stream: _elementBloc.elements,
+                                  builder: (BuildContext context, AsyncSnapshot<List<ElementModel>> snapshot) {
+                                    if (snapshot.data == null) return Text("");
+                                    return DropdownButtonFormField(
+                                      value: selectedElementId,
+                                      items: snapshot.data.map((element) {
+                                        return DropdownMenuItem(
+                                          value: element.Id,
+                                          child: Text(element.Name),
+                                        );
+                                      }).toList(),
+                                      decoration: InputDecoration(
+                                        labelText: 'Categories'
+                                      ),
+                                      onChanged: (value) {
+                                        setState(() => selectedElementId = value);
+                                      },
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return 'Required field.';
+                                        }
+                                      },
                                     );
-                                  }).toList(),
-                                  hint: Text('Elements'),
-                                  value: newEntry.Element,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      newEntry.Element = value;
-                                    });
-                                  },
-                                  validator: (value) {
-                                    if (value == null) {
-                                      return 'Required field.';
-                                    }
                                   },
                                 ),
+                              ),
+                              Container(
+                                child: IconButton(
+                                  icon: Icon(Icons.add),
+                                  color: Colors.green,
+                                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Elements(_elementBloc))),
+                                ),
+                                margin: EdgeInsets.only(left: 20),
                               )
                             ],
                           ),
@@ -225,19 +267,44 @@ class _CreateEditItemState extends State<CreateEditItem> {
                             children: <Widget>[
                               Expanded(
                                 child: TextFormField(
-                                  decoration: InputDecoration(
-                                    labelText: 'Coordinates',
-                                  ),
-                                  controller: coordinatesController,
+                                    decoration: InputDecoration(
+                                      labelText: 'Latitude',
+                                    ),
+                                    controller: latCoordController,
                                 ),
                               ),
-                              IconButton(
-                                color: Colors.green,
-                                icon: Icon(Icons.location_on),
-                                onPressed: () async {
-                                  Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-                                  setState(() => coordinatesController.text = "Lat: ${position.latitude}, Lng: ${position.longitude}");
-                                },
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 10),
+                                  child: TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: 'Longitude',
+                                      ),
+                                      controller: lngCoordController,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                child: IconButton(
+                                  color: Colors.green,
+                                  icon: Icon(Icons.location_on),
+                                  onPressed: () async {
+//                                    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+//                                    setState(() {
+//                                      latCoordController.text = position.latitude.toString();
+//                                      lngCoordController.text = position.longitude.toString();
+//                                    });
+
+                                    var location = new Location();
+                                    LocationData userLocation;
+                                    userLocation = await location.getLocation();
+                                    setState(() {
+                                      latCoordController.text = userLocation.latitude.toString();
+                                      lngCoordController.text = userLocation.longitude.toString();
+                                    });
+                                  },
+                                ),
+                                margin: EdgeInsets.only(left: 20),
                               )
                             ],
                           ),
@@ -259,18 +326,46 @@ class _CreateEditItemState extends State<CreateEditItem> {
                           ),
                           Container(
                             margin: EdgeInsets.only(bottom: 10.0),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Provided By',
-                              ),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return 'Required field.';
-                                }
-                              },
-                              maxLines: null,
-                              keyboardType: TextInputType.multiline,
-                              controller: providerByController,
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: StreamBuilder(
+                                    stream: _providedBloc.provided,
+                                    builder: (BuildContext context, AsyncSnapshot<List<ProvidedModel>> snapshot) {
+                                      return DropdownButtonFormField(
+                                        value: selectedProvidedId,
+                                        items: snapshot.data != null ? snapshot.data.map((i) => DropdownMenuItem(child: Text(i.Name), value: i.Id)).toList() : [],
+                                        decoration: InputDecoration(
+                                            labelText: "Provided By"
+                                        ),
+                                        validator: (value) {
+                                          if (value == null)
+                                            return 'Required field.';
+                                        },
+                                        onChanged: (value) {
+                                          setState(() => selectedProvidedId = value);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: IconButton(
+                                    icon: Icon(Icons.add),
+                                    color: Colors.green,
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return ProvidedByNewDialog(_providedBloc);
+
+                                        }
+                                      );
+                                    },
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ],
@@ -278,49 +373,21 @@ class _CreateEditItemState extends State<CreateEditItem> {
                     ),
                     Container(
                       child: Text('Before Image', style: TextStyle(
-                          fontSize: 18
+                          fontSize: 12
                       )),
                       margin: EdgeInsets.only(bottom: 5, left: 5),
                     ),
-//                SizedBox(
-//                  height: 100.0,
-//                  child: ListView(
-//                      scrollDirection: Axis.horizontal,
-//                      shrinkWrap: true,
-//                      children: new List.from([
-//                        Container(
-//                          child: RaisedButton(
-//                            padding: EdgeInsets.all(0),
-//                            onPressed: _openGallery,
-//                            child: Icon(Icons.photo_album),
-//                          ),
-//                          margin: EdgeInsets.only(left: 5),
-//                        )
-//                      ])..addAll(newEntry.Images.map((image) => Container(
-//                        height: 100.0,
-//                        margin: EdgeInsets.only(left: 5.0, right: 5.0),
-//                        decoration: BoxDecoration(
-//                            // borderRadius: BorderRadius.all(Radius.circular(5)),
-//                            border: Border.all(
-//                              style: BorderStyle.solid,
-//                              color: Color.fromARGB(100, 100, 100, 100),
-//                              width: 1,
-//                            )
-//                        ),
-//                        child: Image.file(image, ),
-//                      )).toList())
-//                  ),
-//                ),
                     Container(
                       margin: EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: RaisedButton(
+                            child: FlatButton(
+                              textTheme: ButtonTextTheme.accent,
                               child: Text('Select Before Image'),
                               onPressed: () async {
                                 var image = await _openGallery();
-                                if (image != null) {
+                                if (image != null && isImage(image)) {
                                   setState(() {
                                     if (newEntry.Images.length > 0) newEntry.Images[0] = image;
                                     else newEntry.Images.add(image);
@@ -341,7 +408,7 @@ class _CreateEditItemState extends State<CreateEditItem> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text('Status', style: TextStyle(fontSize: 18)),
+                          Text('Status', style: TextStyle(fontSize: 12)),
                         ],
                       ),
                     ),
@@ -369,12 +436,22 @@ class _CreateEditItemState extends State<CreateEditItem> {
                             },
                           ),
                           Text('Done'),
+                          Radio(
+                            value: StatusEnum.no_action,
+                            groupValue: newEntry.Status,
+                            onChanged: (value) {
+                              setState(() {
+                                newEntry.Status = value;
+                              });
+                            },
+                          ),
+                          Text('No Action')
                         ],
                       ),
                     ),
                     Container(
                       child: Text('After Image', style: TextStyle(
-                          fontSize: 18
+                          fontSize: 12
                       )),
                       margin: EdgeInsets.only(bottom: 5, left: 5),
                     ),
@@ -383,11 +460,12 @@ class _CreateEditItemState extends State<CreateEditItem> {
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: RaisedButton(
+                            child: FlatButton(
+                              textTheme: ButtonTextTheme.accent,
                               child: Text('Select After Image'),
                               onPressed: newEntry.Status == StatusEnum.done ? () async {
                                 var image = await _openGallery();
-                                if (image != null) {
+                                if (image != null && isImage(image)) {
                                   setState(() {
                                     if (newEntry.DoneImages == null || newEntry.DoneImages.length == 0) {
                                       newEntry.DoneImages = new List();

@@ -44,6 +44,7 @@ class _CreateEditProjectState extends State<CreateEditProject> {
     if (_isEditing) {
       project.Name = nameController.text;
       project.Description = descriptionController.text;
+      await _dbHelper.update(project, "Projects");
     } else {
       newProject.Name = nameController.text;
       newProject.Description = descriptionController.text;
@@ -61,7 +62,7 @@ class _CreateEditProjectState extends State<CreateEditProject> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Project"),
+        title: Text(_isEditing ? "Edit Project" : "New Project"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),

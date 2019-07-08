@@ -1,50 +1,22 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:dot_punch_list/provided.dart';
+import 'package:sqflite/sqlite_api.dart';
+
+import 'DBProvider.dart';
+import 'element.dart';
 import 'model.interface.dart';
 import 'project.dart';
+import 'element.dart' show ElementModel;
 
-enum StatusEnum { pending, done }
-
-enum ElementEnum { sod, drainage, water_mains, sewer, guardrail, concrete, mse_wall, retaining_wall, bridge, earthwork, asphalt, pavements_markings, signage, signal, lighting, its, fence, landscape, cleanup, mot, environmental, miscellaneous }
-
-final elements = [
-  new ElementModel(Name: 'Sod', Element: ElementEnum.sod),
-  new ElementModel(Name: 'Drainage', Element: ElementEnum.drainage),
-  new ElementModel(Name: 'Water Mains', Element: ElementEnum.water_mains),
-  new ElementModel(Name: 'Sewer', Element: ElementEnum.sewer),
-  new ElementModel(Name: 'Guardrail', Element: ElementEnum.guardrail),
-  new ElementModel(Name: 'Concrete', Element: ElementEnum.concrete),
-  new ElementModel(Name: 'MSE Wall', Element: ElementEnum.mse_wall),
-  new ElementModel(Name: 'Retaining Wall', Element: ElementEnum.retaining_wall),
-  new ElementModel(Name: 'Bridge', Element: ElementEnum.bridge),
-  new ElementModel(Name: 'Earthwork', Element: ElementEnum.earthwork),
-  new ElementModel(Name: 'Asphalt', Element: ElementEnum.asphalt),
-  new ElementModel(Name: 'Pavement Markings', Element: ElementEnum.pavements_markings),
-  new ElementModel(Name: 'Signage', Element: ElementEnum.signage),
-  new ElementModel(Name: 'Signal', Element: ElementEnum.signal),
-  new ElementModel(Name: 'Lighting', Element: ElementEnum.lighting),
-  new ElementModel(Name: 'ITS', Element: ElementEnum.its),
-  new ElementModel(Name: 'Fence', Element: ElementEnum.fence),
-  new ElementModel(Name: 'Landscape', Element: ElementEnum.landscape),
-  new ElementModel(Name: 'Cleanup', Element: ElementEnum.cleanup),
-  new ElementModel(Name: 'MOT', Element: ElementEnum.mot),
-  new ElementModel(Name: 'Environmental', Element: ElementEnum.environmental),
-  new ElementModel(Name: 'Miscellaneous', Element: ElementEnum.miscellaneous)
-];
+enum StatusEnum { pending, done, no_action }
 
 final statuses = [
   new StatusModel(Id: StatusEnum.pending, Text: 'Pending'),
-  new StatusModel(Id: StatusEnum.done, Text: 'Done')
+  new StatusModel(Id: StatusEnum.done, Text: 'Done'),
+  new StatusModel(Id: StatusEnum.no_action, Text: 'No Action')
 ];
-
-class ElementModel {
-  String Name;
-  String Description;
-  ElementEnum Element;
-  bool Selected = false;
-
-  ElementModel({this.Name, this.Description, this.Element});
-}
 
 class StatusModel {
   StatusEnum Id;
@@ -53,11 +25,23 @@ class StatusModel {
   StatusModel({this.Id, this.Text});
 }
 
+class CoordinatesModel {
+  double Latitude;
+  double Longitude;
+
+  CoordinatesModel(this.Latitude, this.Longitude);
+
+  @override
+  String toString() {
+    return "Lat: ${this.Latitude}, Lng: ${this.Longitude}";
+  }
+}
+
 class Entry implements Model {
   int Id;
-  ElementEnum Element;
+  ElementModel Element;
   String Location;
-  String Coordinates;
+  CoordinatesModel Coordinates;
   String Title;
   String Description;
   String Comments;
@@ -69,10 +53,11 @@ class Entry implements Model {
   StatusEnum Status;
   String Remarks;
   Project ProjectModel;
-  String ProvidedBy;
+  ProvidedModel ProvidedBy;
 
   Entry({
-    this.Id, this.Element,
+    this.Id,
+    this.Element,
     this.Location,
     this.Coordinates,
     this.Title,
@@ -92,26 +77,26 @@ class Entry implements Model {
     if (this.Status == null) this.Status = StatusEnum.pending;
   }
 
-  factory Entry.fromJson(Map<String, dynamic> json) => new Entry(
-    Id: json["id"],
-    Element: ElementEnum.values[json["element"]],
-    Location: json["location"],
-    Coordinates: json["coordinates"],
-    Title: json["title"],
-    Comments: json["comments"],
-    Issue: json["issue"],
-    Images: json["images"].toString().split(' ').toList().map((String i) => new File(i)).toList(),
-    DoneImages: json["doneImages"].toString().isNotEmpty ? json["doneImages"].toString().split(' ').toList().map((String i) => new File(i)).toList() : new List(),
-    Status: StatusEnum.values[json["status"]],
-    Time: DateTime.parse(json["time"]),
-    Remarks: json["remarks"],
-    ProvidedBy: json["providedBy"]
+  factory Entry.fromJson(Map<String, dynamic> map) => new Entry(
+    Id: map["id"],
+    Element: new ElementModel(Id: map["elementId"], Name: map["elementName"], Description: map["elementDescription"]),
+    Location: map["location"],
+    Coordinates: map["coordinates"] != null ? new CoordinatesModel(double.parse(map["coordinates"].toString().split(' ').toList()[0]), double.parse(map["coordinates"].toString().split(' ').toList()[1])) : null,
+    Title: map["title"],
+    Comments: map["comments"],
+    Issue: map["issue"],
+    Images: map["images"] != null && map["images"].toString().isNotEmpty ? map["images"].toString().split(' ').toList().map((String i) => new File(i)).toList() : null,
+    DoneImages: map["doneImages"].toString().isNotEmpty ? map["doneImages"].toString().split(' ').toList().map((String i) => new File(i)).toList() : new List(),
+    Status: StatusEnum.values[map["status"]],
+    Time: DateTime.parse(map["time"]),
+    Remarks: map["remarks"],
+    ProvidedBy: new ProvidedModel(Id: map["providedById"], Name: map["providedByName"])
   );
 
   Map<String, dynamic> toJson() => {
-    "element": Element.index,
+    "element": Element.Id,
     "location": Location,
-    "coordinates": Coordinates,
+    "coordinates": Coordinates != null ? "${Coordinates.Latitude} ${Coordinates.Longitude}" : null,
     "title": Title,
     "comments": Comments,
     "issue": Issue,
@@ -121,28 +106,35 @@ class Entry implements Model {
     "time": Time.toIso8601String(),
     "project": ProjectModel.Id,
     "remarks": Remarks,
-    "providedBy": ProvidedBy,
+    "providedBy": ProvidedBy.Id,
   };
 
   Map<String, dynamic> toJson2() => {
     "element": element,
     "location": Location,
-    "coordinates": Coordinates,
+    "coordinates": Coordinates != null ? "Lat: ${Coordinates.Latitude}, Lng: ${Coordinates.Longitude}" : null,
     "title": Title,
     "comments": Comments,
     "issue": Issue,
-    "images": Images.map((File i) => base64.encode(i.readAsBytesSync())).toList(),
+    "images": Images != null ? Images.map((File i) => base64.encode(i.readAsBytesSync())).toList() : null,
     "doneImages": DoneImages != null && DoneImages.length > 0 ? DoneImages.map((File i) => base64.encode(i.readAsBytesSync())).toList() : [],
     "status": status,
     "time": Time.toIso8601String(),
     "remarks": Remarks,
-    "providedBy": ProvidedBy
+    "providedBy": providedBy
   };
 
   String get element {
-    if (Element != null) {
-      return elements.firstWhere((element) => element.Element == Element).Name;
+    if (Element != null && Element.Name != null) {
+      return Element.Name;
     }
+    return "";
+  }
+
+  String get providedBy {
+    if (ProvidedBy != null)
+      return ProvidedBy.Name;
+
     return "";
   }
 
@@ -151,8 +143,83 @@ class Entry implements Model {
       switch (Status.index) {
         case 0: return "Pending";
         case 1: return "Done";
+        case 2: return "No Action";
       }
     }
     return "No Action";
+  }
+}
+
+abstract class EntryEvent {}
+
+class GetEntries extends EntryEvent {
+  Project project;
+  String query;
+  GetEntries(this.project, {this.query});
+}
+class AddEntry extends EntryEvent {
+  Entry entry;
+  AddEntry(this.entry);
+}
+class EditEntry extends EntryEvent {
+  Entry entry;
+  EditEntry(this.entry);
+}
+class RemoveEntry extends EntryEvent {
+  int id;
+  RemoveEntry(this.id);
+}
+
+class EntryBloc {
+  final _dbHelper = DatabaseHelper.instance;
+
+  List<Entry> _entries = [];
+
+  final _entryStateController = new StreamController<List<Entry>>();
+  StreamSink<List<Entry>> get _inEntries => _entryStateController.sink;
+
+  Stream<List<Entry>> get entries => _entryStateController.stream;
+
+  final _entryEventController = StreamController<EntryEvent>();
+
+  Sink<EntryEvent> get entryEventSink => _entryEventController.sink;
+
+  EntryBloc() {
+    _entryEventController.stream.listen(_mapEventToState);
+  }
+
+  void _mapEventToState(EntryEvent event) async {
+    if (event is GetEntries) {
+      String query = "";
+      if (event.query != null && event.query.isNotEmpty) {
+        query += "(${event.query}) AND (Entries.project = ${event.project.Id})";
+      } else query = "Entries.project = ${event.project.Id}";
+      Database db = await _dbHelper.database;
+      try {
+        List<Map> maps = await db.rawQuery("SELECT Entries.*, Elements.id as elementId, Elements.name as elementName, Elements.description as elementDescription, ProvidedBy.id as providedById, ProvidedBy.name as providedByName FROM Entries LEFT JOIN Elements ON Entries.element = Elements.id LEFT JOIN ProvidedBy ON Entries.providedBy = ProvidedBy.id WHERE $query");
+        _entries = maps.map((map) => Entry.fromJson(map)).toList();
+      } catch (e) {
+        print(e);
+      }
+    } else if (event is AddEntry) {
+      var id = await _dbHelper.insert(event.entry, "Entries");
+      event.entry.Id = id;
+      _entries.add(event.entry);
+    } else if (event is EditEntry) {
+      await _dbHelper.update(event.entry, "Entries");
+      final index = _entries.indexWhere((entry) => entry.Id == event.entry.Id);
+      _entries[index] = event.entry;
+    } else if (event is RemoveEntry) {
+      await _dbHelper.delete(event.id, "Entries");
+      final index = _entries.indexWhere((entry) => entry.Id == event.id);
+      _entries.removeAt(index);
+    }
+
+    _inEntries.add(_entries);
+  }
+
+  void dispose() {
+    _entryStateController.close();
+    _entryEventController.close();
   }
 }

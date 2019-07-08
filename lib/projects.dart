@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'DBProvider.dart';
+import 'disclaimer_popup.dart';
+import 'models/settings.dart';
 import 'project.dart';
 import 'create_edit_project.dart';
 import 'entries.dart';
@@ -18,6 +20,7 @@ class _ProjectState extends State<Projects> {
 
   @override
   void initState() {
+    _init();
     _loadProjects();
     super.initState();
   }
@@ -37,7 +40,7 @@ class _ProjectState extends State<Projects> {
       barrierDismissible: false,
       builder: (ctx) {
         return AlertDialog(
-          title: Text("Remove ${project.Name}?"),
+          title: Text("Deactivate ${project.Name}?"),
           content: Text("Are you sure you would like to deactivate this project?"),
           actions: <Widget>[
             FlatButton(
@@ -61,7 +64,7 @@ class _ProjectState extends State<Projects> {
     );
   }
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -76,8 +79,8 @@ class _ProjectState extends State<Projects> {
             },
             itemBuilder: (context) => [
               _showInactive ? PopupMenuItem(
-                value: false,
-                child: Text("Show actives")
+                  value: false,
+                  child: Text("Show actives")
               ) : PopupMenuItem(
                   value: true,
                   child: Text("Show inactives")
@@ -88,26 +91,26 @@ class _ProjectState extends State<Projects> {
       ),
       body: Container(
         child: projects != null && projects.length != 0 ? ListView.builder(
-              itemCount: projects.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(projects[index].Name),
-                  subtitle: projects[index].Description != null && projects[index].Description.isNotEmpty ?  Text(projects[index].Description) : null,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(project: projects[index],))),
-                  trailing: !_showInactive ? IconButton(icon: Icon(Icons.edit), onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateEditProject(projects: projects, project: projects[index]))))
-                  : Icon(Icons.not_interested),
-                  onLongPress: () => _showDeleteDialog(projects[index]),
-                );
-              }) : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text("No available projects", style: TextStyle(color: Colors.grey, fontSize: 22,),)
-                    ],
-                  )
-                ],
+            itemCount: projects.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(projects[index].Name),
+                subtitle: projects[index].Description != null && projects[index].Description.isNotEmpty ?  Text(projects[index].Description) : null,
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(project: projects[index],))),
+                trailing: !_showInactive ? IconButton(icon: Icon(Icons.edit), onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateEditProject(projects: projects, project: projects[index]))))
+                    : Icon(Icons.not_interested),
+                onLongPress: () => _showDeleteDialog(projects[index]),
+              );
+            }) : Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("No available projects", style: TextStyle(color: Colors.grey, fontSize: 22,),)
+              ],
+            )
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -121,5 +124,25 @@ class _ProjectState extends State<Projects> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  _init() async {
+    final _dbHelper = DatabaseHelper.instance;
+    List<Map> settings = await _dbHelper.query('Settings');
+    if (settings.isNotEmpty) {
+      var setting = SettingsModel.fromJson(settings[0]);
+      if (!setting.disclaimerClosed) {
+        await showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) {
+              return DisclaimerPopup();
+            }
+        );
+
+        setting.disclaimerClosed = true;
+        await _dbHelper.update(setting, 'Settings');
+      }
+    }
   }
 }

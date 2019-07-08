@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'projects.dart';
 
 void main() => runApp(MyApp());
@@ -15,18 +14,15 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
   }
-
-  _requestPermissions() async {
-    var permission = await PermissionHandler().requestPermissions([PermissionGroup.location]);
-  }
   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DOT Punch List',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        accentColor: Colors.lightBlue[600],
+        primaryColor: Colors.blue[600],
+        accentColor: Colors.blue[600],
+        errorColor: Colors.red[900]
       ),
       home: Projects(),
     );
