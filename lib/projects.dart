@@ -33,8 +33,37 @@ class _ProjectState extends State<Projects> {
     else setState(() => projects = new List());
   }
 
+  void _removeProject(Project project) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text('Remove?'),
+          content: Text('Would you like to permanently remove ${project.Name}?'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("Cancel"),
+              onPressed: () => Navigator.pop(context),
+            ),
+            FlatButton(
+              child: Text("Remove"),
+              onPressed: () async {
+                DatabaseHelper dbHelper = DatabaseHelper.instance;
+                Database db = await dbHelper.database;
+                await db.rawUpdate("DELETE FROM Projects WHERE id = ?", [project.Id]);
+                Navigator.pop(context);
+                _loadProjects();
+              },
+              textColor: Colors.red,
+            ),
+          ],
+        );
+      }
+    );
+  }
+
   void _showDeleteDialog(Project project) {
-    if (_showInactive) return;
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -57,7 +86,37 @@ class _ProjectState extends State<Projects> {
                 _loadProjects();
               },
               textColor: Colors.red,
-            )
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  _showReactivateDialog(Project project) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text("Activate ${project.Name}?"),
+          content: Text("Are you sure you would like to re-activate this project?"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("Cancel"),
+              onPressed: () => Navigator.pop(context),
+            ),
+            FlatButton(
+              child: Text("Make Activate"),
+              onPressed: () async {
+                DatabaseHelper dbHelper = DatabaseHelper.instance;
+                Database db = await dbHelper.database;
+                await db.rawUpdate("UPDATE Projects set inactive = 0 WHERE id = ?", [project.Id]);
+                Navigator.pop(context);
+                _loadProjects();
+              },
+              textColor: Colors.red,
+            ),
           ],
         );
       },
@@ -98,8 +157,8 @@ class _ProjectState extends State<Projects> {
                 subtitle: projects[index].Description != null && projects[index].Description.isNotEmpty ?  Text(projects[index].Description) : null,
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(project: projects[index],))),
                 trailing: !_showInactive ? IconButton(icon: Icon(Icons.edit), onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateEditProject(projects: projects, project: projects[index]))))
-                    : Icon(Icons.not_interested),
-                onLongPress: () => _showDeleteDialog(projects[index]),
+                    : IconButton(icon: Icon(Icons.delete), onPressed: () => _removeProject(projects[index]),),
+                onLongPress: () => !_showInactive ? _showDeleteDialog(projects[index]) : _showReactivateDialog(projects[index]),
               );
             }) : Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +166,7 @@ class _ProjectState extends State<Projects> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("No available projects", style: TextStyle(color: Colors.grey, fontSize: 22,),)
+                Text("No available ${_showInactive ? 'inactive' : ''} projects", style: TextStyle(color: Colors.grey, fontSize: 22,),)
               ],
             )
           ],

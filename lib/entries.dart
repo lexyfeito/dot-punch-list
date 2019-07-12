@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _entryBloc.entryEventSink.add(GetEntries(project));
-    _providedByBloc.providedEventSink.add(GetProvidedEvent());
+    _providedByBloc.providedEventSink.add(GetProvidedEvent(project));
     _elementBloc.elementEventSink.add(GetElements());
   }
 
@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Nothing to see here...',
+                        'Nothing to see here',
                         style: TextStyle(
                             color: Colors.grey,
                             fontSize: 22

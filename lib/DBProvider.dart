@@ -12,7 +12,7 @@ class DatabaseHelper<T> {
   // This is the actual database filename that is saved in the docs directory.
   static final _databaseName = "MyPunchListDb.db";
   // Increment this version when you need to change the schema.
-  static final _databaseVersion = 1;
+  static final _databaseVersion = 3;
 
   // Make this a singleton class.
   DatabaseHelper._privateConstructor();
@@ -41,7 +41,7 @@ class DatabaseHelper<T> {
   }
 
   Future _onUpdate(db, oldVersion, newVersion) async {
-
+    if (newVersion == 3) _migrationV3(db);
   }
 
   // SQL string to create the database
@@ -118,7 +118,12 @@ class DatabaseHelper<T> {
     await db.execute("CREATE TABLE ProvidedBy ("
         "id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "name TEXT,"
-        "inactive INTEGER"
+        "inactive INTEGER,"
+        "project_id INTEGER"
         ")");
+  }
+
+  _migrationV3(Database db) async {
+    await db.execute("ALTER TABLE ProvidedBy ADD project_id INTEGER");
   }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dot_punch_list/DBProvider.dart';
 import 'package:dot_punch_list/provided.dart';
+import 'package:dot_punch_list/provided_by_list.dart';
 import 'package:dot_punch_list/provided_by_new_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
@@ -11,7 +12,6 @@ import 'element.dart';
 import 'elements.dart';
 import 'entry.dart';
 import 'project.dart';
-import 'package:image/image.dart';
 
 class CreateEditItem extends StatefulWidget {
 
@@ -242,7 +242,7 @@ class _CreateEditItemState extends State<CreateEditItem> {
                               ),
                               Container(
                                 child: IconButton(
-                                  icon: Icon(Icons.add),
+                                  icon: Icon(Icons.settings),
                                   color: Colors.green,
                                   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Elements(_elementBloc))),
                                 ),
@@ -289,12 +289,6 @@ class _CreateEditItemState extends State<CreateEditItem> {
                                   color: Colors.green,
                                   icon: Icon(Icons.location_on),
                                   onPressed: () async {
-//                                    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-//                                    setState(() {
-//                                      latCoordController.text = position.latitude.toString();
-//                                      lngCoordController.text = position.longitude.toString();
-//                                    });
-
                                     var location = new Location();
                                     LocationData userLocation;
                                     userLocation = await location.getLocation();
@@ -334,7 +328,7 @@ class _CreateEditItemState extends State<CreateEditItem> {
                                     builder: (BuildContext context, AsyncSnapshot<List<ProvidedModel>> snapshot) {
                                       return DropdownButtonFormField(
                                         value: selectedProvidedId,
-                                        items: snapshot.data != null ? snapshot.data.map((i) => DropdownMenuItem(child: Text(i.Name), value: i.Id)).toList() : [],
+                                        items: snapshot.data != null && snapshot.data.isNotEmpty ? snapshot.data.map((i) => DropdownMenuItem(child: Text(i.Name), value: i.Id)).toList() : [],
                                         decoration: InputDecoration(
                                             labelText: "Provided By"
                                         ),
@@ -352,16 +346,10 @@ class _CreateEditItemState extends State<CreateEditItem> {
                                 Container(
                                   margin: EdgeInsets.only(left: 20),
                                   child: IconButton(
-                                    icon: Icon(Icons.add),
+                                    icon: Icon(Icons.settings),
                                     color: Colors.green,
                                     onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return ProvidedByNewDialog(_providedBloc);
-
-                                        }
-                                      );
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProvidedByList(_providedBloc, project)));
                                     },
                                   ),
                                 )

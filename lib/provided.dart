@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:dot_punch_list/project.dart';
+
 import 'DBProvider.dart';
 import 'model.interface.dart';
 
@@ -7,23 +9,32 @@ class ProvidedModel implements Model {
   int Id;
   String Name;
   bool Selected;
+  int ProjectId;
+  bool Inactive;
 
-  ProvidedModel({this.Id, this.Name, this.Selected = false});
+  ProvidedModel({this.Id, this.Name, this.Selected = false, this.ProjectId, this.Inactive});
 
   Map<String, dynamic> toJson() => {
     "id": Id,
-    "name": Name
+    "name": Name,
+    'project_id': ProjectId,
+    'inactive': Inactive
   };
 
   factory ProvidedModel.fromJson(Map<String, dynamic> map) => new ProvidedModel(
     Id: map["id"],
-    Name: map["name"]
+    Name: map["name"],
+    ProjectId: map['project_id'],
+    Inactive: map['inactive'] == 1
   );
 }
 
 abstract class ProvidedEvent {}
 
-class GetProvidedEvent extends ProvidedEvent {}
+class GetProvidedEvent extends ProvidedEvent {
+  Project project;
+  GetProvidedEvent(this.project);
+}
 class AddProvidedEvent extends ProvidedEvent {
   ProvidedModel provided;
   AddProvidedEvent(this.provided);
@@ -32,11 +43,14 @@ class EditProvidedEvent extends ProvidedEvent {
   ProvidedModel provided;
   EditProvidedEvent(this.provided);
 }
+class DeactivateProvidedEvent extends ProvidedEvent {
+  ProvidedModel provided;
+  DeactivateProvidedEvent(this.provided);
+}
 
 class ProvidedBloc {
   final _dbHelper = DatabaseHelper.instance;
-  List<ProvidedModel> _provided = [
-  ];
+  List<ProvidedModel> _provided = [];
   List<ProvidedModel> get providedList => _provided;
 
   final _providedStateController = new StreamController<List<ProvidedModel>>.broadcast();
@@ -55,7 +69,7 @@ class ProvidedBloc {
   _mapEventToState(ProvidedEvent event) async {
     if (event is GetProvidedEvent) {
       var db = await _dbHelper.database;
-      List<Map> maps = await db.rawQuery("SELECT * FROM ProvidedBy ORDER BY name ASC");
+      List<Map> maps = await db.rawQuery("SELECT * FROM ProvidedBy WHERE project_id = '${event.project.Id}' AND (inactive is null OR inactive = 0) ORDER BY name ASC");
       if (maps.length > 0) {
         _provided = maps.map((map) => ProvidedModel.fromJson(map)).toList();
       }
@@ -64,8 +78,13 @@ class ProvidedBloc {
       event.provided.Id = id;
       _provided.add(event.provided);
     } else if (event is EditProvidedEvent) {
+      await _dbHelper.update(event.provided, 'ProvidedBy');
       var index = _provided.indexWhere((i) => i.Id == event.provided.Id);
       _provided[index] = event.provided;
+    } else if (event is DeactivateProvidedEvent) {
+      await _dbHelper.update(event.provided, 'ProvidedBy');
+      var index = _provided.indexWhere((i) => i.Id == event.provided.Id);
+      _provided.removeAt(index);
     }
 
     _inProvided.add(_provided);

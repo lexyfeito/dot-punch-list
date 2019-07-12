@@ -55,7 +55,7 @@ class _Elements extends State<Elements> {
                       builder: (context) {
                         return AlertDialog(
                           title: Text("Deactivate ${snapshot.data[index].Name}?"),
-                          content: Text("Are you sure you want to deactivate this element?"),
+                          content: Text("Are you sure you want to deactivate this category?"),
                           actions: <Widget>[
                             FlatButton(
                               child: Text("Cancel"),

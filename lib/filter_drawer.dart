@@ -1,5 +1,6 @@
 import 'package:dot_punch_list/project.dart';
 import 'package:dot_punch_list/provided.dart';
+import 'package:dot_punch_list/provided_by_list.dart';
 import 'package:dot_punch_list/provided_by_new_dialog.dart';
 import 'package:flutter/material.dart';
 import 'element.dart';
@@ -253,16 +254,9 @@ class _FilterDrawer extends State<FilterDrawer> {
                 onPressed: () => Navigator.pop(context),
               ),
               IconButton(
-                icon: Icon(Icons.add),
+                icon: Icon(Icons.settings),
                 color: Colors.blue,
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return ProvidedByNewDialog(_providedBlock);
-                      }
-                  );
-                },
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProvidedByList(_providedBlock, project))),
               )
             ],
           );
@@ -312,7 +306,7 @@ class _ProvidedByDialogState extends State<ProvidedByDialog> {
 
   @override
   Widget build(BuildContext context) {
-    if (_providedBloc.providedList.isEmpty) return Text("No available provided by");
+    if (_providedBloc.providedList.isEmpty) return Text("No available provided by.");
     return ListView.builder(
       itemCount: _providedBloc.providedList.length,
       shrinkWrap: true,
